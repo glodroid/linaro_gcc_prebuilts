@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Copyright (C) 1988-2017 Free Software Foundation, Inc.
+<!-- Copyright (C) 1988-2021 Free Software Foundation, Inc.
 
 Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU Free Documentation License, Version 1.3 or
@@ -19,47 +19,37 @@ A GNU Manual
 You have freedom to copy and modify this GNU Manual, like GNU
      software.  Copies published by the Free Software Foundation raise
      funds for GNU development. -->
-<!-- Created by GNU Texinfo 5.2, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>Using the GNU Compiler Collection (GCC): Spec Files</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Spec Files (Using the GNU Compiler Collection (GCC))</title>
 
-<meta name="description" content="Using the GNU Compiler Collection (GCC): Spec Files">
-<meta name="keywords" content="Using the GNU Compiler Collection (GCC): Spec Files">
+<meta name="description" content="Spec Files (Using the GNU Compiler Collection (GCC))">
+<meta name="keywords" content="Spec Files (Using the GNU Compiler Collection (GCC))">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link href="index.html#Top" rel="start" title="Top">
-<link href="Option-Index.html#Option-Index" rel="index" title="Option Index">
+<link href="index.html" rel="start" title="Top">
+<link href="Option-Index.html" rel="index" title="Option Index">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
-<link href="Invoking-GCC.html#Invoking-GCC" rel="up" title="Invoking GCC">
-<link href="Environment-Variables.html#Environment-Variables" rel="next" title="Environment Variables">
-<link href="zSeries-Options.html#zSeries-Options" rel="prev" title="zSeries Options">
+<link href="Invoking-GCC.html" rel="up" title="Invoking GCC">
+<link href="Environment-Variables.html" rel="next" title="Environment Variables">
+<link href="zSeries-Options.html" rel="prev" title="zSeries Options">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
-blockquote.smallquotation {font-size: smaller}
+blockquote.indentedblock {margin-right: 0em}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
-div.indentedblock {margin-left: 3.2em}
 div.lisp {margin-left: 3.2em}
-div.smalldisplay {margin-left: 3.2em}
-div.smallexample {margin-left: 3.2em}
-div.smallindentedblock {margin-left: 3.2em; font-size: smaller}
-div.smalllisp {margin-left: 3.2em}
-kbd {font-style:oblique}
+kbd {font-style: oblique}
 pre.display {font-family: inherit}
 pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: inherit; font-size: smaller}
-pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: inherit; font-size: smaller}
-pre.smalllisp {font-size: smaller}
-span.nocodebreak {white-space:nowrap}
-span.nolinebreak {white-space:nowrap}
-span.roman {font-family:serif; font-weight:normal}
-span.sansserif {font-family:sans-serif; font-weight:normal}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
 ul.no-bullet {list-style: none}
 -->
 </style>
@@ -67,16 +57,14 @@ ul.no-bullet {list-style: none}
 
 </head>
 
-<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
-<a name="Spec-Files"></a>
-<div class="header">
+<body lang="en">
+<span id="Spec-Files"></span><div class="header">
 <p>
-Next: <a href="Environment-Variables.html#Environment-Variables" accesskey="n" rel="next">Environment Variables</a>, Previous: <a href="Submodel-Options.html#Submodel-Options" accesskey="p" rel="prev">Submodel Options</a>, Up: <a href="Invoking-GCC.html#Invoking-GCC" accesskey="u" rel="up">Invoking GCC</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Option-Index.html#Option-Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="Environment-Variables.html" accesskey="n" rel="next">Environment Variables</a>, Previous: <a href="Submodel-Options.html" accesskey="p" rel="prev">Submodel Options</a>, Up: <a href="Invoking-GCC.html" accesskey="u" rel="up">Invoking GCC</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Option-Index.html" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<a name="Specifying-Subprocesses-and-the-Switches-to-Pass-to-Them"></a>
-<h3 class="section">3.19 Specifying Subprocesses and the Switches to Pass to Them</h3>
-<a name="index-Spec-Files"></a>
+<span id="Specifying-Subprocesses-and-the-Switches-to-Pass-to-Them"></span><h3 class="section">3.20 Specifying Subprocesses and the Switches to Pass to Them</h3>
+<span id="index-Spec-Files"></span>
 
 <p><code>gcc</code> is a driver program.  It performs its job by invoking a
 sequence of other programs to do the work of compiling, assembling and
@@ -101,19 +89,19 @@ appear here are:
 </p>
 <dl compact="compact">
 <dt><code>%include &lt;<var>file</var>&gt;</code></dt>
-<dd><a name="index-_0025include"></a>
+<dd><span id="index-_0025include"></span>
 <p>Search for <var>file</var> and insert its text at the current point in the
 specs file.
 </p>
 </dd>
 <dt><code>%include_noerr &lt;<var>file</var>&gt;</code></dt>
-<dd><a name="index-_0025include_005fnoerr"></a>
+<dd><span id="index-_0025include_005fnoerr"></span>
 <p>Just like &lsquo;<samp>%include</samp>&rsquo;, but do not generate an error message if the include
 file cannot be found.
 </p>
 </dd>
 <dt><code>%rename <var>old_name</var> <var>new_name</var></code></dt>
-<dd><a name="index-_0025rename"></a>
+<dd><span id="index-_0025rename"></span>
 <p>Rename the spec string <var>old_name</var> to <var>new_name</var>.
 </p>
 </dd>
@@ -139,8 +127,8 @@ spec string for the indicated suffix.  When the compiler encounters an
 input file with the named suffix, it processes the spec string in
 order to work out how to compile that file.  For example:
 </p>
-<div class="smallexample">
-<pre class="smallexample">.ZZ:
+<div class="example">
+<pre class="example">.ZZ:
 z-compile -input %i
 </pre></div>
 
@@ -158,8 +146,8 @@ suffix directive can be one of the following:
 similar to using the <samp>-x</samp> command-line switch to GCC to specify a
 language explicitly.  For example:
 </p>
-<div class="smallexample">
-<pre class="smallexample">.ZZ:
+<div class="example">
+<pre class="example">.ZZ:
 @c++
 </pre></div>
 
@@ -169,8 +157,8 @@ language explicitly.  For example:
 <dt><code>#<var>name</var></code></dt>
 <dd><p>This causes an error messages saying:
 </p>
-<div class="smallexample">
-<pre class="smallexample"><var>name</var> compiler not installed on this system.
+<div class="example">
+<pre class="example"><var>name</var> compiler not installed on this system.
 </pre></div>
 </dd>
 </dl>
@@ -187,8 +175,8 @@ possible to override earlier entries using this technique.
 override these strings or create their own.  Note that individual
 targets can also add their own spec strings to this list.
 </p>
-<div class="smallexample">
-<pre class="smallexample">asm          Options to pass to the assembler
+<div class="example">
+<pre class="example">asm          Options to pass to the assembler
 asm_final    Options to pass to the assembler post-processor
 cpp          Options to pass to the C preprocessor
 cc1          Options to pass to the C compiler
@@ -206,8 +194,8 @@ startfile    Object files to include at the start of the link
 
 <p>Here is a small example of a spec file:
 </p>
-<div class="smallexample">
-<pre class="smallexample">%rename lib                 old_lib
+<div class="example">
+<pre class="example">%rename lib                 old_lib
 
 *lib:
 --start-group -lgcc -lc -leval1 --end-group %(old_lib)
@@ -234,19 +222,27 @@ together or combine them with constant text in a single argument.
 <dd><p>Substitute one &lsquo;<samp>%</samp>&rsquo; into the program name or argument.
 </p>
 </dd>
+<dt><code>%&quot;</code></dt>
+<dd><p>Substitute an empty argument.
+</p>
+</dd>
 <dt><code>%i</code></dt>
 <dd><p>Substitute the name of the input file being processed.
 </p>
 </dd>
 <dt><code>%b</code></dt>
-<dd><p>Substitute the basename of the input file being processed.
-This is the substring up to (and not including) the last period
-and not including the directory.
+<dd><p>Substitute the basename for outputs related with the input file being
+processed.  This is often the substring up to (and not including) the
+last period and not including the directory but, unless %w is active, it
+expands to the basename for auxiliary outputs, which may be influenced
+by an explicit output name, and by various other options that control
+how auxiliary outputs are named.
 </p>
 </dd>
 <dt><code>%B</code></dt>
 <dd><p>This is the same as &lsquo;<samp>%b</samp>&rsquo;, but include the file suffix (text after
-the last period).
+the last period).  Without %w, it expands to the basename for dump
+outputs.
 </p>
 </dd>
 <dt><code>%d</code></dt>
@@ -302,7 +298,7 @@ disposal mechanism.
 all.  These are the two most common ways to instruct a program that it
 should read from standard input or write to standard output.  If you
 need something more elaborate you can use an &lsquo;<samp>%{pipe:<code>X</code>}</samp>&rsquo;
-construct: see for example <samp>f/lang-specs.h</samp>.
+construct: see for example <samp>gcc/fortran/lang-specs.h</samp>.
 </p>
 </dd>
 <dt><code>%.<var>SUFFIX</var></code></dt>
@@ -315,6 +311,10 @@ terminated by the next space or %.
 <dd><p>Marks the argument containing or following the &lsquo;<samp>%w</samp>&rsquo; as the
 designated output file of this compilation.  This puts the argument
 into the sequence of arguments that &lsquo;<samp>%o</samp>&rsquo; substitutes.
+</p>
+</dd>
+<dt><code>%V</code></dt>
+<dd><p>Indicates that this compilation produces no output file.
 </p>
 </dd>
 <dt><code>%o</code></dt>
@@ -335,18 +335,6 @@ handling is such that &lsquo;<samp>%O</samp>&rsquo; is treated exactly as if it 
 been substituted, except that &lsquo;<samp>%g, %u, and %U</samp>&rsquo; do not currently
 support additional <var>suffix</var> characters following &lsquo;<samp>%O</samp>&rsquo; as they do
 following, for example, &lsquo;<samp>.o</samp>&rsquo;.
-</p>
-</dd>
-<dt><code>%p</code></dt>
-<dd><p>Substitutes the standard macro predefinitions for the
-current target machine.  Use this when running <code>cpp</code>.
-</p>
-</dd>
-<dt><code>%P</code></dt>
-<dd><p>Like &lsquo;<samp>%p</samp>&rsquo;, but puts &lsquo;<samp>__</samp>&rsquo; before and after the name of each
-predefined macro, except for macros that start with &lsquo;<samp>__</samp>&rsquo; or with
-&lsquo;<samp>_<var>L</var></samp>&rsquo;, where <var>L</var> is an uppercase letter.  This is for ISO
-C.
 </p>
 </dd>
 <dt><code>%I</code></dt>
@@ -377,6 +365,10 @@ searched.
 Use this when inconsistent options are detected.
 </p>
 </dd>
+<dt><code>%n<var>str</var></code></dt>
+<dd><p>Print <var>str</var> as a notice.  <var>str</var> is terminated by a newline.
+</p>
+</dd>
 <dt><code>%(<var>name</var>)</code></dt>
 <dd><p>Substitute the contents of spec string <var>name</var> at this point.
 </p>
@@ -396,6 +388,14 @@ spec string.
 </dd>
 <dt><code>%Z</code></dt>
 <dd><p>Output the accumulated preprocessor options specified by <samp>-Wp</samp>.
+</p>
+</dd>
+<dt><code>%M</code></dt>
+<dd><p>Output <code>multilib_os_dir</code>.
+</p>
+</dd>
+<dt><code>%R</code></dt>
+<dd><p>Output the concatenation of <code>target_system_root</code> and <code>target_sysroot_suffix</code>.
 </p>
 </dd>
 <dt><code>%a</code></dt>
@@ -463,11 +463,19 @@ Note that each comma in the substituted string is replaced by
 a single space.
 </p>
 </dd>
-<dt><code>%&lt;<code>S</code></code></dt>
+<dt><code>%&lt;S</code></dt>
 <dd><p>Remove all occurrences of <code>-S</code> from the command line.  Note&mdash;this
 command is position dependent.  &lsquo;<samp>%</samp>&rsquo; commands in the spec string
 before this one see <code>-S</code>, &lsquo;<samp>%</samp>&rsquo; commands in the spec string
 after this one do not.
+</p>
+</dd>
+<dt><code>%&lt;S*</code></dt>
+<dd><p>Similar to &lsquo;<samp>%&lt;S</samp>&rsquo;, but match all switches beginning with <code>-S</code>.
+</p>
+</dd>
+<dt><code>%&gt;S</code></dt>
+<dd><p>Similar to &lsquo;<samp>%&lt;S</samp>&rsquo;, but keep <code>-S</code> in the GCC command line.
 </p>
 </dd>
 <dt><code>%:<var>function</var>(<var>args</var>)</code></dt>
@@ -487,8 +495,8 @@ defined, a fatal error is issued.  Otherwise, the return value is the
 value of the environment variable concatenated with the string.  For
 example, if <code>TOPDIR</code> is defined as <samp>/path/to/top</samp>, then:
 </p>
-<div class="smallexample">
-<pre class="smallexample">%:getenv(TOPDIR /include)
+<div class="example">
+<pre class="example">%:getenv(TOPDIR /include)
 </pre></div>
 
 <p>expands to <samp>/path/to/top/include</samp>.
@@ -499,8 +507,8 @@ example, if <code>TOPDIR</code> is defined as <samp>/path/to/top</samp>, then:
 pathname to a file.  If the file exists, <code>if-exists</code> returns the
 pathname.  Here is a small example of its usage:
 </p>
-<div class="smallexample">
-<pre class="smallexample">*startfile:
+<div class="example">
+<pre class="example">*startfile:
 crt0%O%s %:if-exists(crti%O%s) crtbegin%O%s
 </pre></div>
 
@@ -513,10 +521,33 @@ returns the pathname.  If it does not exist, it returns the second argument.
 This way, <code>if-exists-else</code> can be used to select one file or another,
 based on the existence of the first.  Here is a small example of its usage:
 </p>
-<div class="smallexample">
-<pre class="smallexample">*startfile:
+<div class="example">
+<pre class="example">*startfile:
 crt0%O%s %:if-exists(crti%O%s) \
 %:if-exists-else(crtbeginT%O%s crtbegin%O%s)
+</pre></div>
+
+</dd>
+<dt><code><code>if-exists-then-else</code></code></dt>
+<dd><p>The <code>if-exists-then-else</code> spec function takes at least two arguments
+and an optional third one. The first argument is an absolute pathname to a
+file.  If the file exists, the function returns the second argument.
+If the file does not exist, the function returns the third argument if there
+is one, or NULL otherwise. This can be used to expand one text, or optionally
+another, based on the existence of a file.  Here is a small example of its
+usage:
+</p>
+<div class="example">
+<pre class="example">-l%:if-exists-then-else(%:getenv(VSB_DIR rtnet.h) rtnet net)
+</pre></div>
+
+</dd>
+<dt><code><code>sanitize</code></code></dt>
+<dd><p>The <code>sanitize</code> spec function takes no arguments.  It returns non-NULL if
+any address, thread or undefined behavior sanitizers are active.
+</p>
+<div class="example">
+<pre class="example">%{%:sanitize(address):-funwind-tables}
 </pre></div>
 
 </dd>
@@ -525,8 +556,8 @@ crt0%O%s %:if-exists(crti%O%s) \
 first argument in the outfiles array and replaces it with the second argument.  Here
 is a small example of its usage:
 </p>
-<div class="smallexample">
-<pre class="smallexample">%{fgnu-runtime:%:replace-outfile(-lobjc -lobjc-gnu)}
+<div class="example">
+<pre class="example">%{fgnu-runtime:%:replace-outfile(-lobjc -lobjc-gnu)}
 </pre></div>
 
 </dd>
@@ -535,8 +566,66 @@ is a small example of its usage:
 first argument in the outfiles array and removes it.  Here is a small example
 its usage:
 </p>
-<div class="smallexample">
-<pre class="smallexample">%:remove-outfile(-lm)
+<div class="example">
+<pre class="example">%:remove-outfile(-lm)
+</pre></div>
+
+</dd>
+<dt><code><code>version-compare</code></code></dt>
+<dd><p>The <code>version-compare</code> spec function takes four or five arguments of the following
+form:
+</p>
+<div class="example">
+<pre class="example">&lt;comparison-op&gt; &lt;arg1&gt; [&lt;arg2&gt;] &lt;switch&gt; &lt;result&gt;
+</pre></div>
+
+<p>It returns <code>result</code> if the comparison evaluates to true, and NULL if it doesn&rsquo;t.
+The supported <code>comparison-op</code> values are:
+</p>
+<dl compact="compact">
+<dt><code>&gt;=</code></dt>
+<dd><p>True if <code>switch</code> is a later (or same) version than <code>arg1</code>
+</p>
+</dd>
+<dt><code>!&gt;</code></dt>
+<dd><p>Opposite of <code>&gt;=</code>
+</p>
+</dd>
+<dt><code>&lt;</code></dt>
+<dd><p>True if <code>switch</code> is an earlier version than <code>arg1</code>
+</p>
+</dd>
+<dt><code>!&lt;</code></dt>
+<dd><p>Opposite of <code>&lt;</code>
+</p>
+</dd>
+<dt><code>&gt;&lt;</code></dt>
+<dd><p>True if <code>switch</code> is <code>arg1</code> or later, and earlier than <code>arg2</code>
+</p>
+</dd>
+<dt><code>&lt;&gt;</code></dt>
+<dd><p>True if <code>switch</code> is earlier than <code>arg1</code>, or is <code>arg2</code> or later
+</p></dd>
+</dl>
+
+<p>If the <code>switch</code> is not present at all, the condition is false unless the first character
+of the <code>comparison-op</code> is <code>!</code>.
+</p>
+<div class="example">
+<pre class="example">%:version-compare(&gt;= 10.3 mmacosx-version-min= -lmx)
+</pre></div>
+
+<p>The above example would add <samp>-lmx</samp> if <samp>-mmacosx-version-min=10.3.9</samp> was
+passed.
+</p>
+</dd>
+<dt><code><code>include</code></code></dt>
+<dd><p>The <code>include</code> spec function behaves much like <code>%include</code>, with the advantage
+that it can be nested inside a spec and thus be conditionalized.  It takes one argument,
+the filename, and looks for it in the startfile path.  It always returns NULL.
+</p>
+<div class="example">
+<pre class="example">%{static-libasan|static:%:include(libsanitizer.spec)%(link_libasan)}
 </pre></div>
 
 </dd>
@@ -548,8 +637,8 @@ result containing all the found arguments each prepended by
 <samp>-plugin-opt=-pass-through=</samp> and joined by spaces.  This list is
 intended to be passed to the LTO linker plugin.
 </p>
-<div class="smallexample">
-<pre class="smallexample">%:pass-through-libs(%G %L %G)
+<div class="example">
+<pre class="example">%:pass-through-libs(%G %L %G)
 </pre></div>
 
 </dd>
@@ -557,8 +646,8 @@ intended to be passed to the LTO linker plugin.
 <dd><p>The <code>print-asm-header</code> function takes no arguments and simply
 prints a banner like:
 </p>
-<div class="smallexample">
-<pre class="smallexample">Assembler options
+<div class="example">
+<pre class="example">Assembler options
 =================
 
 Use &quot;-Wa,OPTION&quot; to pass &quot;OPTION&quot; to the assembler.
@@ -566,11 +655,32 @@ Use &quot;-Wa,OPTION&quot; to pass &quot;OPTION&quot; to the assembler.
 
 <p>It is used to separate compiler options from assembler options
 in the <samp>--target-help</samp> output.
-</p></dd>
+</p>
+</dd>
+<dt><code><code>gt</code></code></dt>
+<dd><p>The <code>gt</code> spec function takes two or more arguments.  It returns <code>&quot;&quot;</code> (the
+empty string) if the second-to-last argument is greater than the last argument, and NULL
+otherwise.  The following example inserts the <code>link_gomp</code> spec if the last
+<samp>-ftree-parallelize-loops=</samp> option given on the command line is greater than 1:
+</p>
+<div class="example">
+<pre class="example">%{%:gt(%{ftree-parallelize-loops=*:%*} 1):%:include(libgomp.spec)%(link_gomp)}
+</pre></div>
+
+</dd>
+<dt><code><code>debug-level-gt</code></code></dt>
+<dd><p>The <code>debug-level-gt</code> spec function takes one argument and returns <code>&quot;&quot;</code> (the
+empty string) if <code>debug_info_level</code> is greater than the specified number, and NULL
+otherwise.
+</p>
+<div class="example">
+<pre class="example">%{%:debug-level-gt(0):%{gdwarf*:--gdwarf2}}
+</pre></div>
+</dd>
 </dl>
 
 </dd>
-<dt><code>%{<code>S</code>}</code></dt>
+<dt><code>%{S}</code></dt>
 <dd><p>Substitutes the <code>-S</code> switch, if that switch is given to GCC.
 If that switch is not specified, this substitutes nothing.  Note that
 the leading dash is omitted when specifying this option, and it is
@@ -579,12 +689,17 @@ string &lsquo;<samp>%{foo}</samp>&rsquo; matches the command-line option <samp>-
 and outputs the command-line option <samp>-foo</samp>.
 </p>
 </dd>
-<dt><code>%W{<code>S</code>}</code></dt>
+<dt><code>%W{S}</code></dt>
 <dd><p>Like %{<code>S</code>} but mark last argument supplied within as a file to be
 deleted on failure.
 </p>
 </dd>
-<dt><code>%{<code>S</code>*}</code></dt>
+<dt><code>%@{S}</code></dt>
+<dd><p>Like %{<code>S</code>} but puts the result into a <code>FILE</code> and substitutes
+<code>@FILE</code> if an <code>@file</code> argument has been supplied.
+</p>
+</dd>
+<dt><code>%{S*}</code></dt>
 <dd><p>Substitutes all the switches specified to GCC whose names start
 with <code>-S</code>, but which also take an argument.  This is used for
 switches like <samp>-o</samp>, <samp>-D</samp>, <samp>-I</samp>, etc.
@@ -593,22 +708,22 @@ one switch whose name starts with &lsquo;<samp>o</samp>&rsquo;.  %{o*} substitut
 text, including the space.  Thus two arguments are generated.
 </p>
 </dd>
-<dt><code>%{<code>S</code>*&amp;<code>T</code>*}</code></dt>
+<dt><code>%{S*&amp;T*}</code></dt>
 <dd><p>Like %{<code>S</code>*}, but preserve order of <code>S</code> and <code>T</code> options
 (the order of <code>S</code> and <code>T</code> in the spec is not significant).
 There can be any number of ampersand-separated variables; for each the
 wild card is optional.  Useful for CPP as &lsquo;<samp>%{D*&amp;U*&amp;A*}</samp>&rsquo;.
 </p>
 </dd>
-<dt><code>%{<code>S</code>:<code>X</code>}</code></dt>
+<dt><code>%{S:X}</code></dt>
 <dd><p>Substitutes <code>X</code>, if the <samp>-S</samp> switch is given to GCC.
 </p>
 </dd>
-<dt><code>%{!<code>S</code>:<code>X</code>}</code></dt>
+<dt><code>%{!S:X}</code></dt>
 <dd><p>Substitutes <code>X</code>, if the <samp>-S</samp> switch is <em>not</em> given to GCC.
 </p>
 </dd>
-<dt><code>%{<code>S</code>*:<code>X</code>}</code></dt>
+<dt><code>%{S*:X}</code></dt>
 <dd><p>Substitutes <code>X</code> if one or more switches whose names start with
 <code>-S</code> are specified to GCC.  Normally <code>X</code> is substituted only
 once, no matter how many such switches appeared.  However, if <code>%*</code>
@@ -622,34 +737,34 @@ text in the sequence, however, then a space is not generated.  This
 allows the <code>%*</code> substitution to be used as part of a larger
 string.  For example, a spec string like this:
 </p>
-<div class="smallexample">
-<pre class="smallexample">%{mcu=*:--script=%*/memory.ld}
+<div class="example">
+<pre class="example">%{mcu=*:--script=%*/memory.ld}
 </pre></div>
 
 <p>when matching an option like <samp>-mcu=newchip</samp> produces:
 </p>
-<div class="smallexample">
-<pre class="smallexample">--script=newchip/memory.ld
+<div class="example">
+<pre class="example">--script=newchip/memory.ld
 </pre></div>
 
 </dd>
-<dt><code>%{.<code>S</code>:<code>X</code>}</code></dt>
+<dt><code>%{.S:X}</code></dt>
 <dd><p>Substitutes <code>X</code>, if processing a file with suffix <code>S</code>.
 </p>
 </dd>
-<dt><code>%{!.<code>S</code>:<code>X</code>}</code></dt>
+<dt><code>%{!.S:X}</code></dt>
 <dd><p>Substitutes <code>X</code>, if <em>not</em> processing a file with suffix <code>S</code>.
 </p>
 </dd>
-<dt><code>%{,<code>S</code>:<code>X</code>}</code></dt>
+<dt><code>%{,S:X}</code></dt>
 <dd><p>Substitutes <code>X</code>, if processing a file for language <code>S</code>.
 </p>
 </dd>
-<dt><code>%{!,<code>S</code>:<code>X</code>}</code></dt>
+<dt><code>%{!,S:X}</code></dt>
 <dd><p>Substitutes <code>X</code>, if not processing a file for language <code>S</code>.
 </p>
 </dd>
-<dt><code>%{<code>S</code>|<code>P</code>:<code>X</code>}</code></dt>
+<dt><code>%{S|P:X}</code></dt>
 <dd><p>Substitutes <code>X</code> if either <code>-S</code> or <code>-P</code> is given to
 GCC.  This may be combined with &lsquo;<samp>!</samp>&rsquo;, &lsquo;<samp>.</samp>&rsquo;, &lsquo;<samp>,</samp>&rsquo;, and
 <code>*</code> sequences as well, although they have a stronger binding than
@@ -659,20 +774,27 @@ is substituted.
 </p>
 <p>For example, a spec string like this:
 </p>
-<div class="smallexample">
-<pre class="smallexample">%{.c:-foo} %{!.c:-bar} %{.c|d:-baz} %{!.c|d:-boggle}
+<div class="example">
+<pre class="example">%{.c:-foo} %{!.c:-bar} %{.c|d:-baz} %{!.c|d:-boggle}
 </pre></div>
 
 <p>outputs the following command-line options from the following input
 command-line options:
 </p>
-<div class="smallexample">
-<pre class="smallexample">fred.c        -foo -baz
+<div class="example">
+<pre class="example">fred.c        -foo -baz
 jim.d         -bar -boggle
 -d fred.c     -foo -baz -boggle
 -d jim.d      -bar -baz -boggle
 </pre></div>
 
+</dd>
+<dt><code>%{%:<var>function</var>(<var>args</var>):X}</code></dt>
+<dd>
+<p>Call function named <var>function</var> with args <var>args</var>.  If the
+function returns non-NULL, then <code>X</code> is substituted, if it returns
+NULL, it isn&rsquo;t substituted.
+</p>
 </dd>
 <dt><code>%{S:X; T:Y; :D}</code></dt>
 <dd>
@@ -685,7 +807,14 @@ be as many clauses as you need.  This may be combined with <code>.</code>,
 </dd>
 </dl>
 
-<p>The conditional text <code>X</code> in a %{<code>S</code>:<code>X</code>} or similar
+<p>The switch matching text <code>S</code> in a &lsquo;<samp>%{S}</samp>&rsquo;, &lsquo;<samp>%{S:X}</samp>&rsquo;
+or similar construct can use a backslash to ignore the special meaning
+of the character following it, thus allowing literal matching of a
+character that is otherwise specially treated.  For example,
+&lsquo;<samp>%{std=iso9899\:1999:X}</samp>&rsquo; substitutes <code>X</code> if the
+<samp>-std=iso9899:1999</samp> option is given.
+</p>
+<p>The conditional text <code>X</code> in a &lsquo;<samp>%{S:X}</samp>&rsquo; or similar
 construct may contain other nested &lsquo;<samp>%</samp>&rsquo; constructs or spaces, or
 even newlines.  They are processed as usual, as described above.
 Trailing white space in <code>X</code> is ignored.  White space may also
@@ -718,7 +847,7 @@ proper position among the other output files.
 <hr>
 <div class="header">
 <p>
-Next: <a href="Environment-Variables.html#Environment-Variables" accesskey="n" rel="next">Environment Variables</a>, Previous: <a href="Submodel-Options.html#Submodel-Options" accesskey="p" rel="prev">Submodel Options</a>, Up: <a href="Invoking-GCC.html#Invoking-GCC" accesskey="u" rel="up">Invoking GCC</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Option-Index.html#Option-Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="Environment-Variables.html" accesskey="n" rel="next">Environment Variables</a>, Previous: <a href="Submodel-Options.html" accesskey="p" rel="prev">Submodel Options</a>, Up: <a href="Invoking-GCC.html" accesskey="u" rel="up">Invoking GCC</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Option-Index.html" title="Index" rel="index">Index</a>]</p>
 </div>
 
 

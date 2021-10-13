@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Copyright (C) 1999-2017 Free Software Foundation, Inc.
+<!-- Copyright (C) 1999-2021 Free Software Foundation, Inc.
 
 Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU Free Documentation License, Version 1.3 or
@@ -19,47 +19,37 @@ A GNU Manual
 You have freedom to copy and modify this GNU Manual, like GNU
      software.  Copies published by the Free Software Foundation raise
      funds for GNU development. -->
-<!-- Created by GNU Texinfo 5.2, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>The GNU Fortran Compiler: ISO_C_BINDING</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>ISO_C_BINDING (The GNU Fortran Compiler)</title>
 
-<meta name="description" content="The GNU Fortran Compiler: ISO_C_BINDING">
-<meta name="keywords" content="The GNU Fortran Compiler: ISO_C_BINDING">
+<meta name="description" content="ISO_C_BINDING (The GNU Fortran Compiler)">
+<meta name="keywords" content="ISO_C_BINDING (The GNU Fortran Compiler)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link href="index.html#Top" rel="start" title="Top">
-<link href="Option-Index.html#Option-Index" rel="index" title="Option Index">
+<link href="index.html" rel="start" title="Top">
+<link href="Option-Index.html" rel="index" title="Option Index">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
-<link href="Intrinsic-Modules.html#Intrinsic-Modules" rel="up" title="Intrinsic Modules">
-<link href="IEEE-modules.html#IEEE-modules" rel="next" title="IEEE modules">
-<link href="ISO_005fFORTRAN_005fENV.html#ISO_005fFORTRAN_005fENV" rel="prev" title="ISO_FORTRAN_ENV">
+<link href="Intrinsic-Modules.html" rel="up" title="Intrinsic Modules">
+<link href="IEEE-modules.html" rel="next" title="IEEE modules">
+<link href="ISO_005fFORTRAN_005fENV.html" rel="prev" title="ISO_FORTRAN_ENV">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
-blockquote.smallquotation {font-size: smaller}
+blockquote.indentedblock {margin-right: 0em}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
-div.indentedblock {margin-left: 3.2em}
 div.lisp {margin-left: 3.2em}
-div.smalldisplay {margin-left: 3.2em}
-div.smallexample {margin-left: 3.2em}
-div.smallindentedblock {margin-left: 3.2em; font-size: smaller}
-div.smalllisp {margin-left: 3.2em}
-kbd {font-style:oblique}
+kbd {font-style: oblique}
 pre.display {font-family: inherit}
 pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: inherit; font-size: smaller}
-pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: inherit; font-size: smaller}
-pre.smalllisp {font-size: smaller}
-span.nocodebreak {white-space:nowrap}
-span.nolinebreak {white-space:nowrap}
-span.roman {font-family:serif; font-weight:normal}
-span.sansserif {font-family:sans-serif; font-weight:normal}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
 ul.no-bullet {list-style: none}
 -->
 </style>
@@ -67,15 +57,13 @@ ul.no-bullet {list-style: none}
 
 </head>
 
-<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
-<a name="ISO_005fC_005fBINDING"></a>
-<div class="header">
+<body lang="en">
+<span id="ISO_005fC_005fBINDING"></span><div class="header">
 <p>
-Next: <a href="IEEE-modules.html#IEEE-modules" accesskey="n" rel="next">IEEE modules</a>, Previous: <a href="ISO_005fFORTRAN_005fENV.html#ISO_005fFORTRAN_005fENV" accesskey="p" rel="prev">ISO_FORTRAN_ENV</a>, Up: <a href="Intrinsic-Modules.html#Intrinsic-Modules" accesskey="u" rel="up">Intrinsic Modules</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Option-Index.html#Option-Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="IEEE-modules.html" accesskey="n" rel="next">IEEE modules</a>, Previous: <a href="ISO_005fFORTRAN_005fENV.html" accesskey="p" rel="prev">ISO_FORTRAN_ENV</a>, Up: <a href="Intrinsic-Modules.html" accesskey="u" rel="up">Intrinsic Modules</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Option-Index.html" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<a name="ISO_005fC_005fBINDING-1"></a>
-<h3 class="section">10.2 <code>ISO_C_BINDING</code></h3>
+<span id="ISO_005fC_005fBINDING-1"></span><h3 class="section">10.2 <code>ISO_C_BINDING</code></h3>
 <dl compact="compact">
 <dt><em>Standard</em>:</dt>
 <dd><p>Fortran 2003 and later, GNU extensions
@@ -102,11 +90,11 @@ type default integer, which can be used as KIND type parameters.
 standard and <code>C_PTRDIFF_T</code> of TS 29113, GNU Fortran provides as an
 extension named constants for the 128-bit integer types supported by the
 C compiler: <code>C_INT128_T, C_INT_LEAST128_T, C_INT_FAST128_T</code>.
-Furthermore, if <code>__float128</code> is supported in C, the named constants
-<code>C_FLOAT128, C_FLOAT128_COMPLEX</code> are defined.
+Furthermore, if <code>_Float128</code> is supported in C, the named constants
+<code>C_FLOAT128</code> and <code>C_FLOAT128_COMPLEX</code> are defined.
 </p>
 <table>
-<tr><td width="15%">Fortran Type</td><td width="35%">Named constant</td><td width="35%">C type</td><td width="35%">Extension</td></tr>
+<thead><tr><th width="15%">Fortran Type</th><th width="35%">Named constant</th><th width="35%">C type</th><th width="35%">Extension</th></tr></thead>
 <tr><td width="15%"><code>INTEGER</code></td><td width="35%"><code>C_INT</code></td><td width="35%"><code>int</code></td></tr>
 <tr><td width="15%"><code>INTEGER</code></td><td width="35%"><code>C_SHORT</code></td><td width="35%"><code>short int</code></td></tr>
 <tr><td width="15%"><code>INTEGER</code></td><td width="35%"><code>C_LONG</code></td><td width="35%"><code>long int</code></td></tr>
@@ -134,11 +122,11 @@ Furthermore, if <code>__float128</code> is supported in C, the named constants
 <tr><td width="15%"><code>REAL</code></td><td width="35%"><code>C_FLOAT</code></td><td width="35%"><code>float</code></td></tr>
 <tr><td width="15%"><code>REAL</code></td><td width="35%"><code>C_DOUBLE</code></td><td width="35%"><code>double</code></td></tr>
 <tr><td width="15%"><code>REAL</code></td><td width="35%"><code>C_LONG_DOUBLE</code></td><td width="35%"><code>long double</code></td></tr>
-<tr><td width="15%"><code>REAL</code></td><td width="35%"><code>C_FLOAT128</code></td><td width="35%"><code>__float128</code></td><td width="35%">Ext.</td></tr>
+<tr><td width="15%"><code>REAL</code></td><td width="35%"><code>C_FLOAT128</code></td><td width="35%"><code>_Float128</code></td><td width="35%">Ext.</td></tr>
 <tr><td width="15%"><code>COMPLEX</code></td><td width="35%"><code>C_FLOAT_COMPLEX</code></td><td width="35%"><code>float _Complex</code></td></tr>
 <tr><td width="15%"><code>COMPLEX</code></td><td width="35%"><code>C_DOUBLE_COMPLEX</code></td><td width="35%"><code>double _Complex</code></td></tr>
 <tr><td width="15%"><code>COMPLEX</code></td><td width="35%"><code>C_LONG_DOUBLE_COMPLEX</code></td><td width="35%"><code>long double _Complex</code></td></tr>
-<tr><td width="15%"><code>REAL</code></td><td width="35%"><code>C_FLOAT128_COMPLEX</code></td><td width="35%"><code>__float128 _Complex</code></td><td width="35%">Ext.</td></tr>
+<tr><td width="15%"><code>COMPLEX</code></td><td width="35%"><code>C_FLOAT128_COMPLEX</code></td><td width="35%"><code>_Float128 _Complex</code></td><td width="35%">Ext.</td></tr>
 <tr><td width="15%"><code>LOGICAL</code></td><td width="35%"><code>C_BOOL</code></td><td width="35%"><code>_Bool</code></td></tr>
 <tr><td width="15%"><code>CHARACTER</code></td><td width="35%"><code>C_CHAR</code></td><td width="35%"><code>char</code></td></tr>
 </table>
@@ -147,7 +135,7 @@ Furthermore, if <code>__float128</code> is supported in C, the named constants
 are defined.
 </p>
 <table>
-<tr><td width="20%">Name</td><td width="45%">C definition</td><td width="15%">Value</td></tr>
+<thead><tr><th width="20%">Name</th><th width="45%">C definition</th><th width="15%">Value</th></tr></thead>
 <tr><td width="20%"><code>C_NULL_CHAR</code></td><td width="45%">null character</td><td width="15%"><code>'\0'</code></td></tr>
 <tr><td width="20%"><code>C_ALERT</code></td><td width="45%">alert</td><td width="15%"><code>'\a'</code></td></tr>
 <tr><td width="20%"><code>C_BACKSPACE</code></td><td width="45%">backspace</td><td width="15%"><code>'\b'</code></td></tr>
@@ -161,7 +149,7 @@ are defined.
 <p>Moreover, the following two named constants are defined:
 </p>
 <table>
-<tr><td width="20%">Name</td><td width="80%">Type</td></tr>
+<thead><tr><th width="20%">Name</th><th width="80%">Type</th></tr></thead>
 <tr><td width="20%"><code>C_NULL_PTR</code></td><td width="80%"><code>C_PTR</code></td></tr>
 <tr><td width="20%"><code>C_NULL_FUNPTR</code></td><td width="80%"><code>C_FUNPTR</code></td></tr>
 </table>
@@ -173,7 +161,7 @@ are defined.
 <hr>
 <div class="header">
 <p>
-Next: <a href="IEEE-modules.html#IEEE-modules" accesskey="n" rel="next">IEEE modules</a>, Previous: <a href="ISO_005fFORTRAN_005fENV.html#ISO_005fFORTRAN_005fENV" accesskey="p" rel="prev">ISO_FORTRAN_ENV</a>, Up: <a href="Intrinsic-Modules.html#Intrinsic-Modules" accesskey="u" rel="up">Intrinsic Modules</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Option-Index.html#Option-Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="IEEE-modules.html" accesskey="n" rel="next">IEEE modules</a>, Previous: <a href="ISO_005fFORTRAN_005fENV.html" accesskey="p" rel="prev">ISO_FORTRAN_ENV</a>, Up: <a href="Intrinsic-Modules.html" accesskey="u" rel="up">Intrinsic Modules</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Option-Index.html" title="Index" rel="index">Index</a>]</p>
 </div>
 
 

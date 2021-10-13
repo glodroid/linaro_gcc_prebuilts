@@ -1,4 +1,4 @@
-/* Copyright (C) 1991-2017 Free Software Foundation, Inc.
+/* Copyright (C) 1991-2021 Free Software Foundation, Inc.
    This file is part of the GNU C Library.
 
    The GNU C Library is free software; you can redistribute it and/or
@@ -13,7 +13,7 @@
 
    You should have received a copy of the GNU Lesser General Public
    License along with the GNU C Library; if not, see
-   <http://www.gnu.org/licenses/>.  */
+   <https://www.gnu.org/licenses/>.  */
 
 /* Linux version.  */
 
@@ -101,6 +101,8 @@
 #define IP_NODEFRAG     22
 #define IP_CHECKSUM     23
 #define IP_BIND_ADDRESS_NO_PORT 24
+#define IP_RECVFRAGSIZE 25
+#define IP_RECVERR_RFC4884 26
 
 /* IP_MTU_DISCOVER arguments.  */
 #define IP_PMTUDISC_DONT   0	/* Never send DF frames.  */
@@ -190,6 +192,9 @@ struct in_pktinfo
 #define IPV6_V6ONLY		26
 #define IPV6_JOIN_ANYCAST	27
 #define IPV6_LEAVE_ANYCAST	28
+#define IPV6_MULTICAST_ALL	29
+#define IPV6_ROUTER_ALERT_ISOLATE 30
+#define IPV6_RECVERR_RFC4884	31
 #define IPV6_IPSEC_POLICY	34
 #define IPV6_XFRM_POLICY	35
 #define IPV6_HDRINCL		36
@@ -213,6 +218,21 @@ struct in_pktinfo
 /* Advanced API (RFC3542) (2).  */
 #define IPV6_RECVTCLASS		66
 #define IPV6_TCLASS		67
+
+#define IPV6_AUTOFLOWLABEL	70
+
+/* RFC5014.  */
+#define IPV6_ADDR_PREFERENCES	72
+
+/* RFC5082.  */
+#define IPV6_MINHOPCOUNT	73
+
+#define IPV6_ORIGDSTADDR	74
+#define IPV6_RECVORIGDSTADDR	IPV6_ORIGDSTADDR
+#define IPV6_TRANSPARENT	75
+#define IPV6_UNICAST_IF		76
+#define IPV6_RECVFRAGSIZE	77
+#define IPV6_FREEBIND		78
 
 /* Obsolete synonyms for the above.  */
 #if !__USE_KERNEL_IPV6_DEFS

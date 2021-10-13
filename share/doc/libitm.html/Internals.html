@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Copyright (C) 2011-2017 Free Software Foundation, Inc.
+<!-- Copyright (C) 2011-2021 Free Software Foundation, Inc.
 
 Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU Free Documentation License, Version 1.2 or
@@ -8,47 +8,37 @@ any later version published by the Free Software Foundation; with no
 Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
 A copy of the license is included in the section entitled "GNU
 Free Documentation License". -->
-<!-- Created by GNU Texinfo 5.2, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>GNU libitm: Internals</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Internals (GNU libitm)</title>
 
-<meta name="description" content="GNU libitm: Internals">
-<meta name="keywords" content="GNU libitm: Internals">
+<meta name="description" content="Internals (GNU libitm)">
+<meta name="keywords" content="Internals (GNU libitm)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link href="index.html#Top" rel="start" title="Top">
-<link href="Library-Index.html#Library-Index" rel="index" title="Library Index">
+<link href="index.html" rel="start" title="Top">
+<link href="Library-Index.html" rel="index" title="Library Index">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
-<link href="index.html#Top" rel="up" title="Top">
-<link href="GNU-Free-Documentation-License.html#GNU-Free-Documentation-License" rel="next" title="GNU Free Documentation License">
-<link href="The-libitm-ABI.html#The-libitm-ABI" rel="prev" title="The libitm ABI">
+<link href="index.html" rel="up" title="Top">
+<link href="GNU-Free-Documentation-License.html" rel="next" title="GNU Free Documentation License">
+<link href="The-libitm-ABI.html" rel="prev" title="The libitm ABI">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
-blockquote.smallquotation {font-size: smaller}
+blockquote.indentedblock {margin-right: 0em}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
-div.indentedblock {margin-left: 3.2em}
 div.lisp {margin-left: 3.2em}
-div.smalldisplay {margin-left: 3.2em}
-div.smallexample {margin-left: 3.2em}
-div.smallindentedblock {margin-left: 3.2em; font-size: smaller}
-div.smalllisp {margin-left: 3.2em}
-kbd {font-style:oblique}
+kbd {font-style: oblique}
 pre.display {font-family: inherit}
 pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: inherit; font-size: smaller}
-pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: inherit; font-size: smaller}
-pre.smalllisp {font-size: smaller}
-span.nocodebreak {white-space:nowrap}
-span.nolinebreak {white-space:nowrap}
-span.roman {font-family:serif; font-weight:normal}
-span.sansserif {font-family:sans-serif; font-weight:normal}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
 ul.no-bullet {list-style: none}
 -->
 </style>
@@ -56,18 +46,15 @@ ul.no-bullet {list-style: none}
 
 </head>
 
-<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
-<a name="Internals"></a>
-<div class="header">
+<body lang="en">
+<span id="Internals"></span><div class="header">
 <p>
-Next: <a href="GNU-Free-Documentation-License.html#GNU-Free-Documentation-License" accesskey="n" rel="next">GNU Free Documentation License</a>, Previous: <a href="The-libitm-ABI.html#The-libitm-ABI" accesskey="p" rel="prev">The libitm ABI</a>, Up: <a href="index.html#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Library-Index.html#Library-Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="GNU-Free-Documentation-License.html" accesskey="n" rel="next">GNU Free Documentation License</a>, Previous: <a href="The-libitm-ABI.html" accesskey="p" rel="prev">The libitm ABI</a>, Up: <a href="index.html" accesskey="u" rel="up">Top</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Library-Index.html" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<a name="Internals-1"></a>
-<h2 class="chapter">4 Internals</h2>
+<span id="Internals-1"></span><h2 class="chapter">4 Internals</h2>
 
-<a name="TM-methods-and-method-groups"></a>
-<h3 class="section">4.1 TM methods and method groups</h3>
+<span id="TM-methods-and-method-groups"></span><h3 class="section">4.1 TM methods and method groups</h3>
 
 <p>libitm supports several ways of synchronizing transactions with each other.
 These TM methods (or TM algorithms) are implemented in the form of
@@ -81,8 +68,7 @@ obtained using the factory methods prefixed with <code>dispatch_</code> in
 <code>dispatch_serialirr</code>, that are compatible with all methods because they
 run transactions completely in serial mode.
 </p>
-<a name="TM-method-life-cycle"></a>
-<h4 class="subsection">4.1.1 TM method life cycle</h4>
+<span id="TM-method-life-cycle"></span><h4 class="subsection">4.1.1 TM method life cycle</h4>
 
 <p>The state of TM methods does not change after construction, but they do alter
 the state of transactions that use this method. However, because
@@ -96,8 +82,7 @@ executed next is not affected by the previous transaction.
 initialized and shut down (<code>method_group::init()</code> and <code>fini()</code>)
 when switching between method groups (see <samp>retry.cc</samp>).
 </p>
-<a name="Selecting-the-default-method"></a>
-<h4 class="subsection">4.1.2 Selecting the default method</h4>
+<span id="Selecting-the-default-method"></span><h4 class="subsection">4.1.2 Selecting the default method</h4>
 
 <p>The default method that libitm uses for freshly started transactions (but
 not necessarily for restarted transactions) can be set via an environment
@@ -110,8 +95,7 @@ the &quot;dispatch_&quot; prefix (e.g., &quot;serialirr&quot; instead of
 be supported in the future.
 </p>
 
-<a name="Nesting_003a-flat-vs_002e-closed"></a>
-<h3 class="section">4.2 Nesting: flat vs. closed</h3>
+<span id="Nesting_003a-flat-vs_002e-closed"></span><h3 class="section">4.2 Nesting: flat vs. closed</h3>
 
 <p>We support two different kinds of nesting of transactions. In the case of
 <em>flat nesting</em>, the nesting structure is flattened and all nested
@@ -135,8 +119,7 @@ otherwise (e.g., when a transaction encounters data conflicts during
 optimistic execution).
 </p>
 
-<a name="Locking-conventions"></a>
-<h3 class="section">4.3 Locking conventions</h3>
+<span id="Locking-conventions"></span><h3 class="section">4.3 Locking conventions</h3>
 
 <p>This section documents the locking scheme and rules for all uses of locking
 in libitm. We have to support serial(-irrevocable) mode, which is implemented
@@ -162,8 +145,7 @@ serial transactions). Note that active transactions can become serial
 transactions when they enter serial mode during the runtime of the
 transaction.
 </p>
-<a name="State_002dto_002dlock-mapping"></a>
-<h4 class="subsection">4.3.1 State-to-lock mapping</h4>
+<span id="State_002dto_002dlock-mapping"></span><h4 class="subsection">4.3.1 State-to-lock mapping</h4>
 
 <p>Application data is protected by the serial lock if there is a serial
 transaction and no concurrently running active transaction (i.e., non-serial).
@@ -193,8 +175,7 @@ acquired the serial lock) is allowed to modify this state (but must of course
 be careful to not surprise the current method group&rsquo;s implementation with such
 modifications).
 </p>
-<a name="Lock-acquisition-order"></a>
-<h4 class="subsection">4.3.2 Lock acquisition order</h4>
+<span id="Lock-acquisition-order"></span><h4 class="subsection">4.3.2 Lock acquisition order</h4>
 
 <p>To prevent deadlocks, locks acquisition must happen in a globally agreed-upon
 order. Note that this applies to other forms of blocking too, but does not
@@ -252,9 +233,8 @@ sense to introduce further complexity in the serial lock? For gl-*, we can
 really only avoid an abort if we do -wb and -vbv.
 </p>
 
-<a name="Serial-lock-implementation"></a>
-<h4 class="subsection">4.3.3 Serial lock implementation</h4>
-<a name="serial_002dlock_002dimpl"></a>
+<span id="Serial-lock-implementation"></span><h4 class="subsection">4.3.3 Serial lock implementation</h4>
+<span id="serial_002dlock_002dimpl"></span>
 <p>The serial lock implementation is optimized towards assuming that serial
 transactions are infrequent and not the common case. However, the performance
 of entering serial mode can matter because when only few transactions are run
@@ -308,8 +288,7 @@ Therefore, the real implementation falls back to a blocking slow path, either
 based on pthread mutexes or Linux futexes.
 </p>
 
-<a name="Reentrancy"></a>
-<h4 class="subsection">4.3.4 Reentrancy</h4>
+<span id="Reentrancy"></span><h4 class="subsection">4.3.4 Reentrancy</h4>
 
 <p>libitm has to consider the following cases of reentrancy:
 </p><ul>
@@ -328,8 +307,7 @@ probably be avoided. Therefore, it is not supported.
 
 </li></ul>
 
-<a name="Privatization-safety"></a>
-<h4 class="subsection">4.3.5 Privatization safety</h4>
+<span id="Privatization-safety"></span><h4 class="subsection">4.3.5 Privatization safety</h4>
 
 <p>Privatization safety is ensured by libitm using a quiescence-based approach.
 Basically, a privatizing transaction waits until all concurrent active
@@ -350,9 +328,8 @@ to reduce the syscall overhead, or rather spin for a long amount of time
 instead of doing blocking. Also, it would be good if only the last transaction
 that the privatizer waits for would do the wake-up.
 </p>
-<a name="Progress-guarantees"></a>
-<h4 class="subsection">4.3.6 Progress guarantees</h4>
-<a name="progress_002dguarantees"></a>
+<span id="Progress-guarantees"></span><h4 class="subsection">4.3.6 Progress guarantees</h4>
+<span id="progress_002dguarantees"></span>
 <p>Transactions that do not make progress when using the current TM method will
 eventually try to execute in serial mode. Thus, the serial lock&rsquo;s progress
 guarantees determine the progress guarantees of the whole TM. Obviously, we at
@@ -395,7 +372,7 @@ priority inheritance until the TM has priority-aware contention management.
 <hr>
 <div class="header">
 <p>
-Next: <a href="GNU-Free-Documentation-License.html#GNU-Free-Documentation-License" accesskey="n" rel="next">GNU Free Documentation License</a>, Previous: <a href="The-libitm-ABI.html#The-libitm-ABI" accesskey="p" rel="prev">The libitm ABI</a>, Up: <a href="index.html#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Library-Index.html#Library-Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="GNU-Free-Documentation-License.html" accesskey="n" rel="next">GNU Free Documentation License</a>, Previous: <a href="The-libitm-ABI.html" accesskey="p" rel="prev">The libitm ABI</a>, Up: <a href="index.html" accesskey="u" rel="up">Top</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Library-Index.html" title="Index" rel="index">Index</a>]</p>
 </div>
 
 

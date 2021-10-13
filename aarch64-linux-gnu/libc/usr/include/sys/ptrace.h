@@ -1,5 +1,5 @@
-/* `ptrace' debugger support interface.  Linux version.
-   Copyright (C) 1996-2017 Free Software Foundation, Inc.
+/* `ptrace' debugger support interface.  Linux/AArch64 version.
+   Copyright (C) 1996-2021 Free Software Foundation, Inc.
 
    This file is part of the GNU C Library.
 
@@ -15,7 +15,7 @@
 
    You should have received a copy of the GNU Lesser General Public
    License along with the GNU C Library; if not, see
-   <http://www.gnu.org/licenses/>.  */
+   <https://www.gnu.org/licenses/>.  */
 
 #ifndef _SYS_PTRACE_H
 #define _SYS_PTRACE_H	1
@@ -24,6 +24,41 @@
 #include <bits/types.h>
 
 __BEGIN_DECLS
+
+/* Avoid collision if the linux ptrace header is already included.  */
+#undef PTRACE_TRACEME
+#undef PTRACE_PEEKTEXT
+#undef PTRACE_PEEKDATA
+#undef PTRACE_PEEKUSER
+#undef PTRACE_POKETEXT
+#undef PTRACE_POKEDATA
+#undef PTRACE_POKEUSER
+#undef PTRACE_CONT
+#undef PTRACE_KILL
+#undef PTRACE_SINGLESTEP
+#undef PTRACE_ATTACH
+#undef PTRACE_DETACH
+#undef PTRACE_SYSCALL
+#undef PTRACE_SYSEMU
+#undef PTRACE_SYSEMU_SINGLESTEP
+#undef PTRACE_PEEKMTETAGS
+#undef PTRACE_POKEMTETAGS
+#undef PTRACE_SETOPTIONS
+#undef PTRACE_GETEVENTMSG
+#undef PTRACE_GETSIGINFO
+#undef PTRACE_SETSIGINFO
+#undef PTRACE_GETREGSET
+#undef PTRACE_SETREGSET
+#undef PTRACE_SEIZE
+#undef PTRACE_INTERRUPT
+#undef PTRACE_LISTEN
+#undef PTRACE_PEEKSIGINFO
+#undef PTRACE_GETSIGMASK
+#undef PTRACE_SETSIGMASK
+#undef PTRACE_SECCOMP_GET_FILTER
+#undef PTRACE_SECCOMP_GET_METADATA
+#undef PTRACE_GET_SYSCALL_INFO
+#undef PTRACE_GET_RSEQ_CONFIGURATION
 
 /* Type of the REQUEST argument to `ptrace.'  */
 enum __ptrace_request
@@ -66,7 +101,7 @@ enum __ptrace_request
   PTRACE_KILL = 8,
 #define PT_KILL PTRACE_KILL
 
-  /* Single step the process. */
+  /* Single step the process.  */
   PTRACE_SINGLESTEP = 9,
 #define PT_STEP PTRACE_SINGLESTEP
 
@@ -78,17 +113,25 @@ enum __ptrace_request
   PTRACE_DETACH = 17,
 #define PT_DETACH PTRACE_DETACH
 
-  PTRACE_GET_THREAD_AREA = 22,
-
-  /* Continue and stop at the next (return from) syscall.  */
+  /* Continue and stop at the next entry to or return from syscall.  */
   PTRACE_SYSCALL = 24,
 #define PT_SYSCALL PTRACE_SYSCALL
 
-  /* Get all hardware breakpoint registers.  */
-  PTRACE_GETHBPREGS = 29,
+  /* Continue and stop at the next syscall, it will not be executed.  */
+  PTRACE_SYSEMU = 31,
+#define PT_SYSEMU PTRACE_SYSEMU
 
-  /* Set all hardware breakpoint registers.  */
-  PTRACE_SETHBPREGS = 30,
+  /* Single step the process, the next syscall will not be executed.  */
+  PTRACE_SYSEMU_SINGLESTEP = 32,
+#define PT_SYSEMU_SINGLESTEP PTRACE_SYSEMU_SINGLESTEP
+
+  /* Read MTE tags.  */
+  PTRACE_PEEKMTETAGS = 33,
+#define PT_PEEKMTETAGS PTRACE_PEEKMTETAGS
+
+  /* Write MTE tags.  */
+  PTRACE_POKEMTETAGS = 34,
+#define PT_POKEMTETAGS PTRACE_POKEMTETAGS
 
   /* Set ptrace filter options.  */
   PTRACE_SETOPTIONS = 0x4200,
@@ -119,7 +162,7 @@ enum __ptrace_request
   PTRACE_SEIZE = 0x4206,
 #define PTRACE_SEIZE PTRACE_SEIZE
 
-  /* Trap seized trace.  */
+  /* Trap seized tracee.  */
   PTRACE_INTERRUPT = 0x4207,
 #define PTRACE_INTERRUPT PTRACE_INTERRUPT
 
@@ -127,78 +170,37 @@ enum __ptrace_request
   PTRACE_LISTEN = 0x4208,
 #define PTRACE_LISTEN PTRACE_LISTEN
 
+  /* Retrieve siginfo_t structures without removing signals from a queue.  */
   PTRACE_PEEKSIGINFO = 0x4209,
 #define PTRACE_PEEKSIGINFO PTRACE_PEEKSIGINFO
 
+  /* Get the mask of blocked signals.  */
   PTRACE_GETSIGMASK = 0x420a,
 #define PTRACE_GETSIGMASK PTRACE_GETSIGMASK
 
+  /* Change the mask of blocked signals.  */
   PTRACE_SETSIGMASK = 0x420b,
 #define PTRACE_SETSIGMASK PTRACE_SETSIGMASK
 
-  PTRACE_SECCOMP_GET_FILTER = 0x420c
+  /* Get seccomp BPF filters.  */
+  PTRACE_SECCOMP_GET_FILTER = 0x420c,
 #define PTRACE_SECCOMP_GET_FILTER PTRACE_SECCOMP_GET_FILTER
+
+  /* Get seccomp BPF filter metadata.  */
+  PTRACE_SECCOMP_GET_METADATA = 0x420d,
+#define PTRACE_SECCOMP_GET_METADATA PTRACE_SECCOMP_GET_METADATA
+
+  /* Get information about system call.  */
+  PTRACE_GET_SYSCALL_INFO = 0x420e,
+#define PTRACE_GET_SYSCALL_INFO PTRACE_GET_SYSCALL_INFO
+
+  /* Get rseq configuration information.  */
+  PTRACE_GET_RSEQ_CONFIGURATION = 0x420f
+#define PTRACE_GET_RSEQ_CONFIGURATION PTRACE_GET_RSEQ_CONFIGURATION
 };
 
 
-/* Flag for PTRACE_LISTEN.  */
-enum __ptrace_flags
-{
-  PTRACE_SEIZE_DEVEL = 0x80000000
-};
-
-/* Options set using PTRACE_SETOPTIONS.  */
-enum __ptrace_setoptions
-{
-  PTRACE_O_TRACESYSGOOD	= 0x00000001,
-  PTRACE_O_TRACEFORK	= 0x00000002,
-  PTRACE_O_TRACEVFORK   = 0x00000004,
-  PTRACE_O_TRACECLONE	= 0x00000008,
-  PTRACE_O_TRACEEXEC	= 0x00000010,
-  PTRACE_O_TRACEVFORKDONE = 0x00000020,
-  PTRACE_O_TRACEEXIT	= 0x00000040,
-  PTRACE_O_TRACESECCOMP = 0x00000080,
-  PTRACE_O_EXITKILL	= 0x00100000,
-  PTRACE_O_SUSPEND_SECCOMP	= 0x00200000,
-  PTRACE_O_MASK		= 0x003000ff
-};
-
-/* Wait extended result codes for the above trace options.  */
-enum __ptrace_eventcodes
-{
-  PTRACE_EVENT_FORK	= 1,
-  PTRACE_EVENT_VFORK	= 2,
-  PTRACE_EVENT_CLONE	= 3,
-  PTRACE_EVENT_EXEC	= 4,
-  PTRACE_EVENT_VFORK_DONE = 5,
-  PTRACE_EVENT_EXIT	= 6,
-  PTRACE_EVENT_SECCOMP  = 7
-};
-
-/* Arguments for PTRACE_PEEKSIGINFO.  */
-struct __ptrace_peeksiginfo_args
-{
-  __uint64_t off;	/* From which siginfo to start.  */
-  __uint32_t flags;	/* Flags for peeksiginfo.  */
-  __int32_t nr;		/* How many siginfos to take.  */
-};
-
-enum __ptrace_peeksiginfo_flags
-{
-  /* Read signals from a shared (process wide) queue.  */
-  PTRACE_PEEKSIGINFO_SHARED = (1 << 0)
-};
-
-/* Perform process tracing functions.  REQUEST is one of the values
-   above, and determines the action to be taken.
-   For all requests except PTRACE_TRACEME, PID specifies the process to be
-   traced.
-
-   PID and the other arguments described above for the various requests should
-   appear (those that are used for the particular request) as:
-     pid_t PID, void *ADDR, int DATA, void *ADDR2
-   after REQUEST.  */
-extern long int ptrace (enum __ptrace_request __request, ...) __THROW;
+#include <bits/ptrace-shared.h>
 
 __END_DECLS
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 1991-2017 Free Software Foundation, Inc.
+/* Copyright (C) 1991-2021 Free Software Foundation, Inc.
    This file is part of the GNU C Library.
 
    The GNU C Library is free software; you can redistribute it and/or
@@ -13,13 +13,13 @@
 
    You should have received a copy of the GNU Lesser General Public
    License along with the GNU C Library; if not, see
-   <http://www.gnu.org/licenses/>.  */
+   <https://www.gnu.org/licenses/>.  */
 
 #ifndef	_NETINET_IN_H
 #define	_NETINET_IN_H	1
 
 #include <features.h>
-#include <stdint.h>
+#include <bits/stdint-uintn.h>
 #include <sys/socket.h>
 #include <bits/types.h>
 
@@ -87,8 +87,12 @@ enum
 #define IPPROTO_UDPLITE		IPPROTO_UDPLITE
     IPPROTO_MPLS = 137,    /* MPLS in IP.  */
 #define IPPROTO_MPLS		IPPROTO_MPLS
+    IPPROTO_ETHERNET = 143, /* Ethernet-within-IPv6 Encapsulation.  */
+#define IPPROTO_ETHERNET	IPPROTO_ETHERNET
     IPPROTO_RAW = 255,	   /* Raw IP packets.  */
 #define IPPROTO_RAW		IPPROTO_RAW
+    IPPROTO_MPTCP = 262,   /* Multipath TCP connection.  */
+#define IPPROTO_MPTCP		IPPROTO_MPTCP
     IPPROTO_MAX
   };
 
@@ -192,6 +196,9 @@ enum
 #define	INADDR_BROADCAST	((in_addr_t) 0xffffffff)
 /* Address indicating an error return.  */
 #define	INADDR_NONE		((in_addr_t) 0xffffffff)
+/* Dummy address for source of ICMPv6 errors converted to IPv4 (RFC
+   7600).  */
+#define	INADDR_DUMMY		((in_addr_t) 0xc0000008)
 
 /* Network number for local host loopback.  */
 #define	IN_LOOPBACKNET		127
@@ -204,6 +211,7 @@ enum
 #define INADDR_UNSPEC_GROUP	((in_addr_t) 0xe0000000) /* 224.0.0.0 */
 #define INADDR_ALLHOSTS_GROUP	((in_addr_t) 0xe0000001) /* 224.0.0.1 */
 #define INADDR_ALLRTRS_GROUP    ((in_addr_t) 0xe0000002) /* 224.0.0.2 */
+#define INADDR_ALLSNOOPERS_GROUP ((in_addr_t) 0xe000006a) /* 224.0.0.106 */
 #define INADDR_MAX_LOCAL_GROUP  ((in_addr_t) 0xe00000ff) /* 224.0.0.255 */
 
 #if !__USE_KERNEL_IPV6_DEFS
@@ -241,10 +249,10 @@ struct sockaddr_in
     struct in_addr sin_addr;		/* Internet address.  */
 
     /* Pad to size of `struct sockaddr'.  */
-    unsigned char sin_zero[sizeof (struct sockaddr) -
-			   __SOCKADDR_COMMON_SIZE -
-			   sizeof (in_port_t) -
-			   sizeof (struct in_addr)];
+    unsigned char sin_zero[sizeof (struct sockaddr)
+			   - __SOCKADDR_COMMON_SIZE
+			   - sizeof (in_port_t)
+			   - sizeof (struct in_addr)];
   };
 
 #if !__USE_KERNEL_IPV6_DEFS
@@ -275,10 +283,10 @@ struct ip_mreq_source
     /* IP multicast address of group.  */
     struct in_addr imr_multiaddr;
 
-    /* IP address of source.  */
+    /* IP address of interface.  */
     struct in_addr imr_interface;
 
-    /* IP address of interface.  */
+    /* IP address of source.  */
     struct in_addr imr_sourceaddr;
   };
 #endif

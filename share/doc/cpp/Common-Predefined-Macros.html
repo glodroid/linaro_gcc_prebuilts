@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Copyright (C) 1987-2017 Free Software Foundation, Inc.
+<!-- Copyright (C) 1987-2021 Free Software Foundation, Inc.
 
 Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU Free Documentation License, Version 1.3 or
@@ -20,47 +20,37 @@ A GNU Manual
 You have freedom to copy and modify this GNU Manual, like GNU
      software.  Copies published by the Free Software Foundation raise
      funds for GNU development. -->
-<!-- Created by GNU Texinfo 5.2, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>The C Preprocessor: Common Predefined Macros</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Common Predefined Macros (The C Preprocessor)</title>
 
-<meta name="description" content="The C Preprocessor: Common Predefined Macros">
-<meta name="keywords" content="The C Preprocessor: Common Predefined Macros">
+<meta name="description" content="Common Predefined Macros (The C Preprocessor)">
+<meta name="keywords" content="Common Predefined Macros (The C Preprocessor)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link href="index.html#Top" rel="start" title="Top">
-<link href="Index-of-Directives.html#Index-of-Directives" rel="index" title="Index of Directives">
+<link href="index.html" rel="start" title="Top">
+<link href="Index-of-Directives.html" rel="index" title="Index of Directives">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
-<link href="Predefined-Macros.html#Predefined-Macros" rel="up" title="Predefined Macros">
-<link href="System_002dspecific-Predefined-Macros.html#System_002dspecific-Predefined-Macros" rel="next" title="System-specific Predefined Macros">
-<link href="Standard-Predefined-Macros.html#Standard-Predefined-Macros" rel="prev" title="Standard Predefined Macros">
+<link href="Predefined-Macros.html" rel="up" title="Predefined Macros">
+<link href="System_002dspecific-Predefined-Macros.html" rel="next" title="System-specific Predefined Macros">
+<link href="Standard-Predefined-Macros.html" rel="prev" title="Standard Predefined Macros">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
-blockquote.smallquotation {font-size: smaller}
+blockquote.indentedblock {margin-right: 0em}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
-div.indentedblock {margin-left: 3.2em}
 div.lisp {margin-left: 3.2em}
-div.smalldisplay {margin-left: 3.2em}
-div.smallexample {margin-left: 3.2em}
-div.smallindentedblock {margin-left: 3.2em; font-size: smaller}
-div.smalllisp {margin-left: 3.2em}
-kbd {font-style:oblique}
+kbd {font-style: oblique}
 pre.display {font-family: inherit}
 pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: inherit; font-size: smaller}
-pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: inherit; font-size: smaller}
-pre.smalllisp {font-size: smaller}
-span.nocodebreak {white-space:nowrap}
-span.nolinebreak {white-space:nowrap}
-span.roman {font-family:serif; font-weight:normal}
-span.sansserif {font-family:sans-serif; font-weight:normal}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
 ul.no-bullet {list-style: none}
 -->
 </style>
@@ -68,16 +58,14 @@ ul.no-bullet {list-style: none}
 
 </head>
 
-<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
-<a name="Common-Predefined-Macros"></a>
-<div class="header">
+<body lang="en">
+<span id="Common-Predefined-Macros"></span><div class="header">
 <p>
-Next: <a href="System_002dspecific-Predefined-Macros.html#System_002dspecific-Predefined-Macros" accesskey="n" rel="next">System-specific Predefined Macros</a>, Previous: <a href="Standard-Predefined-Macros.html#Standard-Predefined-Macros" accesskey="p" rel="prev">Standard Predefined Macros</a>, Up: <a href="Predefined-Macros.html#Predefined-Macros" accesskey="u" rel="up">Predefined Macros</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index-of-Directives.html#Index-of-Directives" title="Index" rel="index">Index</a>]</p>
+Next: <a href="System_002dspecific-Predefined-Macros.html" accesskey="n" rel="next">System-specific Predefined Macros</a>, Previous: <a href="Standard-Predefined-Macros.html" accesskey="p" rel="prev">Standard Predefined Macros</a>, Up: <a href="Predefined-Macros.html" accesskey="u" rel="up">Predefined Macros</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index-of-Directives.html" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<a name="Common-Predefined-Macros-1"></a>
-<h4 class="subsection">3.7.2 Common Predefined Macros</h4>
-<a name="index-common-predefined-macros"></a>
+<span id="Common-Predefined-Macros-1"></span><h4 class="subsection">3.7.2 Common Predefined Macros</h4>
+<span id="index-common-predefined-macros"></span>
 
 <p>The common predefined macros are GNU C extensions.  They are available
 with the same meanings regardless of the machine or operating system on
@@ -118,8 +106,8 @@ minor version and patch level are reset.  If you wish to use the
 predefined macros directly in the conditional, you will need to write it
 like this:
 </p>
-<div class="smallexample">
-<pre class="smallexample">/* <span class="roman">Test for GCC &gt; 3.2.0</span> */
+<div class="example">
+<pre class="example">/* <span class="roman">Test for GCC &gt; 3.2.0</span> */
 #if __GNUC__ &gt; 3 || \
     (__GNUC__ == 3 &amp;&amp; (__GNUC_MINOR__ &gt; 2 || \
                        (__GNUC_MINOR__ == 2 &amp;&amp; \
@@ -129,8 +117,8 @@ like this:
 <p>Another approach is to use the predefined macros to
 calculate a single number, then compare that against a threshold:
 </p>
-<div class="smallexample">
-<pre class="smallexample">#define GCC_VERSION (__GNUC__ * 10000 \
+<div class="example">
+<pre class="example">#define GCC_VERSION (__GNUC__ * 10000 \
                      + __GNUC_MINOR__ * 100 \
                      + __GNUC_PATCHLEVEL__)
 &hellip;
@@ -158,6 +146,14 @@ definitions found in standard C.
 <dd><p>This macro expands to the name of the main input file, in the form
 of a C string constant.  This is the source file that was specified
 on the command line of the preprocessor or C compiler.
+</p>
+</dd>
+<dt><code>__FILE_NAME__</code></dt>
+<dd><p>This macro expands to the basename of the current input file, in the
+form of a C string constant.  This is the last path component by which
+the preprocessor opened the file.  For example, processing
+<code>&quot;/usr/local/include/myheader.h&quot;</code> would set this
+macro to <code>&quot;myheader.h&quot;</code>.
 </p>
 </dd>
 <dt><code>__INCLUDE_LEVEL__</code></dt>
@@ -452,8 +448,8 @@ fashion.
 </p>
 <p>You should use these macros for testing like this:
 </p>
-<div class="smallexample">
-<pre class="smallexample">/* <span class="roman">Test for a little-endian machine</span> */
+<div class="example">
+<pre class="example">/* <span class="roman">Test for a little-endian machine</span> */
 #if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
 </pre></div>
 
@@ -489,11 +485,13 @@ handling.
 </p>
 </dd>
 <dt><code>__GXX_EXPERIMENTAL_CXX0X__</code></dt>
-<dd><p>This macro is defined when compiling a C++ source file with the option
-<samp>-std=c++0x</samp> or <samp>-std=gnu++0x</samp>. It indicates that some
-features likely to be included in C++0x are available. Note that these
-features are experimental, and may change or be removed in future
-versions of GCC.
+<dd><p>This macro is defined when compiling a C++ source file with C++11 features
+enabled, i.e., for all C++ language dialects except <samp>-std=c++98</samp>
+and <samp>-std=gnu++98</samp>. This macro is obsolete, but can be used to
+detect experimental C++0x features in very old versions of GCC. Since
+GCC 4.7.0 the <code>__cplusplus</code> macro is defined correctly, so most
+code should test <code>__cplusplus &gt;= 201103L</code> instead of using this
+macro.
 </p>
 </dd>
 <dt><code>__GXX_WEAK__</code></dt>
@@ -571,6 +569,11 @@ If the day of the month is less than 10, it is padded with a space on the left.
 and swap operations on operands 1, 2, 4, 8 or 16 bytes in length, respectively.
 </p>
 </dd>
+<dt><code>__HAVE_SPECULATION_SAFE_VALUE</code></dt>
+<dd><p>This macro is defined with the value 1 to show that this version of GCC
+supports <code>__builtin_speculation_safe_value</code>.
+</p>
+</dd>
 <dt><code>__GCC_HAVE_DWARF2_CFI_ASM</code></dt>
 <dd><p>This macro is defined when the compiler is emitting DWARF CFI directives
 to the assembler.  When this is defined, it is possible to emit those same
@@ -585,6 +588,22 @@ directives in inline assembly.
 the include file <samp>math.h</samp> can define the macros
 <code>FP_FAST_FMA</code>, <code>FP_FAST_FMAF</code>, and <code>FP_FAST_FMAL</code>
 for compatibility with the 1999 C standard.
+</p>
+</dd>
+<dt><code>__FP_FAST_FMAF16</code></dt>
+<dt><code>__FP_FAST_FMAF32</code></dt>
+<dt><code>__FP_FAST_FMAF64</code></dt>
+<dt><code>__FP_FAST_FMAF128</code></dt>
+<dt><code>__FP_FAST_FMAF32X</code></dt>
+<dt><code>__FP_FAST_FMAF64X</code></dt>
+<dt><code>__FP_FAST_FMAF128X</code></dt>
+<dd><p>These macros are defined with the value 1 if the backend supports the
+<code>fma</code> functions using the additional <code>_Float<var>n</var></code> and
+<code>_Float<var>n</var>x</code> types that are defined in ISO/IEC TS
+18661-3:2015.  The include file <samp>math.h</samp> can define the
+<code>FP_FAST_FMAF<var>n</var></code> and <code>FP_FAST_FMAF<var>n</var>x</code> macros if
+the user defined <code>__STDC_WANT_IEC_60559_TYPES_EXT__</code> before
+including <samp>math.h</samp>.
 </p>
 </dd>
 <dt><code>__GCC_IEC_559</code></dt>
@@ -626,13 +645,46 @@ features are supported by GCC.
 <dt><code>__NO_MATH_ERRNO__</code></dt>
 <dd><p>This macro is defined if <samp>-fno-math-errno</samp> is used, or enabled
 by another option such as <samp>-ffast-math</samp> or by default.
+</p>
+</dd>
+<dt><code>__RECIPROCAL_MATH__</code></dt>
+<dd><p>This macro is defined if <samp>-freciprocal-math</samp> is used, or enabled
+by another option such as <samp>-ffast-math</samp> or by default.
+</p>
+</dd>
+<dt><code>__NO_SIGNED_ZEROS__</code></dt>
+<dd><p>This macro is defined if <samp>-fno-signed-zeros</samp> is used, or enabled
+by another option such as <samp>-ffast-math</samp> or by default.
+</p>
+</dd>
+<dt><code>__NO_TRAPPING_MATH__</code></dt>
+<dd><p>This macro is defined if <samp>-fno-trapping-math</samp> is used.
+</p>
+</dd>
+<dt><code>__ASSOCIATIVE_MATH__</code></dt>
+<dd><p>This macro is defined if <samp>-fassociative-math</samp> is used, or enabled
+by another option such as <samp>-ffast-math</samp> or by default.
+</p>
+</dd>
+<dt><code>__ROUNDING_MATH__</code></dt>
+<dd><p>This macro is defined if <samp>-frounding-math</samp> is used.
+</p>
+</dd>
+<dt><code>__GNUC_EXECUTION_CHARSET_NAME</code></dt>
+<dt><code>__GNUC_WIDE_EXECUTION_CHARSET_NAME</code></dt>
+<dd><p>These macros are defined to expand to a narrow string literal of
+the name of the narrow and wide compile-time execution character
+set used.  It directly reflects the name passed to the options
+<samp>-fexec-charset</samp> and <samp>-fwide-exec-charset</samp>, or the defaults
+documented for those options (that is, it can expand to something like
+<code>&quot;UTF-8&quot;</code>).  See <a href="Invocation.html">Invocation</a>.
 </p></dd>
 </dl>
 
 <hr>
 <div class="header">
 <p>
-Next: <a href="System_002dspecific-Predefined-Macros.html#System_002dspecific-Predefined-Macros" accesskey="n" rel="next">System-specific Predefined Macros</a>, Previous: <a href="Standard-Predefined-Macros.html#Standard-Predefined-Macros" accesskey="p" rel="prev">Standard Predefined Macros</a>, Up: <a href="Predefined-Macros.html#Predefined-Macros" accesskey="u" rel="up">Predefined Macros</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index-of-Directives.html#Index-of-Directives" title="Index" rel="index">Index</a>]</p>
+Next: <a href="System_002dspecific-Predefined-Macros.html" accesskey="n" rel="next">System-specific Predefined Macros</a>, Previous: <a href="Standard-Predefined-Macros.html" accesskey="p" rel="prev">Standard Predefined Macros</a>, Up: <a href="Predefined-Macros.html" accesskey="u" rel="up">Predefined Macros</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index-of-Directives.html" title="Index" rel="index">Index</a>]</p>
 </div>
 
 

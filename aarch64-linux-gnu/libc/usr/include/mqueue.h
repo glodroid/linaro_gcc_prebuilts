@@ -1,4 +1,4 @@
-/* Copyright (C) 2004-2017 Free Software Foundation, Inc.
+/* Copyright (C) 2004-2021 Free Software Foundation, Inc.
    This file is part of the GNU C Library.
 
    The GNU C Library is free software; you can redistribute it and/or
@@ -13,7 +13,7 @@
 
    You should have received a copy of the GNU Lesser General Public
    License along with the GNU C Library; if not, see
-   <http://www.gnu.org/licenses/>.  */
+   <https://www.gnu.org/licenses/>.  */
 
 #ifndef _MQUEUE_H
 #define _MQUEUE_H	1
@@ -21,8 +21,7 @@
 #include <features.h>
 #include <sys/types.h>
 #include <fcntl.h>
-#define __need_sigevent_t
-#include <bits/siginfo.h>
+#include <bits/types/sigevent_t.h>
 #include <bits/types/struct_timespec.h>
 /* Get the definition of mqd_t and struct mq_attr.  */
 #include <bits/mqueue.h>
@@ -72,6 +71,7 @@ extern int mq_send (mqd_t __mqdes, const char *__msg_ptr, size_t __msg_len,
 		    unsigned int __msg_prio) __nonnull ((2));
 
 #ifdef __USE_XOPEN2K
+# ifndef __USE_TIME_BITS64
 /* Receive the oldest from highest priority messages in message queue
    MQDES, stop waiting if ABS_TIMEOUT expires.  */
 extern ssize_t mq_timedreceive (mqd_t __mqdes, char *__restrict __msg_ptr,
@@ -86,6 +86,27 @@ extern int mq_timedsend (mqd_t __mqdes, const char *__msg_ptr,
 			 size_t __msg_len, unsigned int __msg_prio,
 			 const struct timespec *__abs_timeout)
   __nonnull ((2, 5));
+# else
+#  ifdef __REDIRECT
+extern int __REDIRECT (mq_timedreceive, (mqd_t __mqdes,
+                               char *__restrict __msg_ptr,
+                               size_t __msg_len,
+                               unsigned int *__restrict __msg_prio,
+                               const struct timespec *__restrict __abs_timeout),
+                       __mq_timedreceive_time64)
+  __nonnull ((2, 5));
+
+extern int __REDIRECT (mq_timedsend, (mqd_t __mqdes,
+                       const char *__msg_ptr, size_t __msg_len,
+                       unsigned int __msg_prio,
+                       const struct timespec *__abs_timeout),
+		       __mq_timedsend_time64)
+  __nonnull ((2, 5));
+#  else
+#   define mq_timedreceive __mq_timedreceive_time64
+#   define mq_timedsend __mq_timedsend_time64
+#  endif
+# endif
 #endif
 
 /* Define some inlines helping to catch common problems.  */

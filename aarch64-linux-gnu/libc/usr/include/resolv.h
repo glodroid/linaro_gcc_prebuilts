@@ -50,92 +50,30 @@
  */
 
 #ifndef _RESOLV_H_
+#define _RESOLV_H_
 
-/* These headers are needed for types used in the `struct res_state'
-   declaration.  */
+#include <sys/cdefs.h>
+#include <sys/param.h>
 #include <sys/types.h>
+#include <stdio.h>
 #include <netinet/in.h>
-
-#ifndef __need_res_state
-# define _RESOLV_H_
-
-# include <sys/param.h>
-# include <sys/cdefs.h>
-# include <stdio.h>
-# include <arpa/nameser.h>
-#endif
-
-#ifndef __res_state_defined
-# define __res_state_defined
+#include <arpa/nameser.h>
+#include <bits/types/res_state.h>
 
 /*
  * Global defines and variables for resolver stub.
  */
-# define MAXNS			3	/* max # name servers we'll track */
-# define MAXDFLSRCH		3	/* # default domain levels to try */
-# define MAXDNSRCH		6	/* max # domains in search path */
-# define LOCALDOMAINPARTS	2	/* min levels in name that is "local" */
+#define LOCALDOMAINPARTS	2	/* min levels in name that is "local" */
 
-# define RES_TIMEOUT		5	/* min. seconds between retries */
-# define MAXRESOLVSORT		10	/* number of net to sort on */
-# define RES_MAXNDOTS		15	/* should reflect bit field size */
-# define RES_MAXRETRANS		30	/* only for resolv.conf/RES_OPTIONS */
-# define RES_MAXRETRY		5	/* only for resolv.conf/RES_OPTIONS */
-# define RES_DFLRETRY		2	/* Default #/tries. */
-# define RES_MAXTIME		65535	/* Infinity, in milliseconds. */
+#define RES_TIMEOUT		5	/* min. seconds between retries */
+#define RES_MAXNDOTS		15	/* should reflect bit field size */
+#define RES_MAXRETRANS		30	/* only for resolv.conf/RES_OPTIONS */
+#define RES_MAXRETRY		5	/* only for resolv.conf/RES_OPTIONS */
+#define RES_DFLRETRY		2	/* Default #/tries. */
+#define RES_MAXTIME		65535	/* Infinity, in milliseconds. */
 
-struct __res_state {
-	int	retrans;		/* retransmition time interval */
-	int	retry;			/* number of times to retransmit */
-	unsigned long options;		/* option flags - see below. */
-	int	nscount;		/* number of name servers */
-	struct sockaddr_in
-		nsaddr_list[MAXNS];	/* address of name server */
-# define nsaddr	nsaddr_list[0]		/* for backward compatibility */
-	unsigned short id;		/* current message id */
-	/* 2 byte hole here.  */
-	char	*dnsrch[MAXDNSRCH+1];	/* components of domain to search */
-	char	defdname[256];		/* default domain (deprecated) */
-	unsigned long pfcode;		/* RES_PRF_ flags - see below. */
-	unsigned ndots:4;		/* threshold for initial abs. query */
-	unsigned nsort:4;		/* number of elements in sort_list[] */
-	unsigned ipv6_unavail:1;	/* connecting to IPv6 server failed */
-	unsigned unused:23;
-	struct {
-		struct in_addr	addr;
-		uint32_t	mask;
-	} sort_list[MAXRESOLVSORT];
-	/* 4 byte hole here on 64-bit architectures.  */
-	void * __glibc_unused_qhook;
-	void * __glibc_unused_rhook;
-	int	res_h_errno;		/* last one set for this context */
-	int	_vcsock;		/* PRIVATE: for res_send VC i/o */
-	unsigned int _flags;		/* PRIVATE: see below */
-	/* 4 byte hole here on 64-bit architectures.  */
-	union {
-		char	pad[52];	/* On an i386 this means 512b total. */
-		struct {
-			uint16_t		nscount;
-			uint16_t		nsmap[MAXNS];
-			int			nssocks[MAXNS];
-			uint16_t		nscount6;
-			uint16_t		nsinit;
-			struct sockaddr_in6	*nsaddrs[MAXNS];
-#ifdef _LIBC
-			unsigned long long int	initstamp
-			  __attribute__((packed));
-#else
-			unsigned int		_initstamp[2];
-#endif
-		} _ext;
-	} _u;
-};
+#define nsaddr	nsaddr_list[0]		/* for backward compatibility */
 
-typedef struct __res_state *res_state;
-# undef __need_res_state
-#endif
-
-#ifdef _RESOLV_H_
 /*
  * Revision information.  This is the release date in YYYYMMDD format.
  * It can change every day so the right thing to do with it is use it
@@ -163,16 +101,6 @@ struct res_sym {
 };
 
 /*
- * Resolver flags (used to be discrete per-module statics ints).
- */
-#define	RES_F_VC	0x00000001	/* socket is TCP */
-#define	RES_F_CONN	0x00000002	/* socket is connected */
-#define RES_F_EDNS0ERR	0x00000004	/* EDNS0 caused errors */
-
-/* res_findzonecut() options */
-#define	RES_EXHAUSTIVE	0x00000001	/* always do all queries */
-
-/*
  * Resolver options (keep these in synch with res_debug.c, please)
  */
 #define RES_INIT	0x00000001	/* address initialized */
@@ -187,11 +115,7 @@ struct res_sym {
 #define RES_DEFNAMES	0x00000080	/* use default domain name */
 #define RES_STAYOPEN	0x00000100	/* Keep TCP socket open */
 #define RES_DNSRCH	0x00000200	/* search up local domain tree */
-#define	RES_INSECURE1	0x00000400	/* type 1 security disabled */
-#define	RES_INSECURE2	0x00000800	/* type 2 security disabled */
 #define	RES_NOALIASES	0x00001000	/* shuts off HOSTALIASES feature */
-#define	RES_USE_INET6	\
-  __glibc_macro_warning ("RES_USE_INET6 is deprecated") 0x00002000
 #define RES_ROTATE	0x00004000	/* rotate ns list after each query */
 #define	RES_NOCHECKNAME \
   __glibc_macro_warning ("RES_NOCHECKNAME is deprecated") 0x00008000
@@ -206,6 +130,8 @@ struct res_sym {
 #define RES_USE_DNSSEC	0x00800000	/* use DNSSEC using OK bit in OPT */
 #define RES_NOTLDQUERY	0x01000000	/* Do not look up unqualified name
 					   as a TLD.  */
+#define RES_NORELOAD    0x02000000 /* No automatic configuration reload.  */
+#define RES_TRUSTAD     0x04000000 /* Request AD bit, keep it in responses.  */
 
 #define RES_DEFAULT	(RES_RECURSE|RES_DEFNAMES|RES_DNSRCH)
 
@@ -242,20 +168,28 @@ __END_DECLS
 #define res_close		__res_close
 #define res_init		__res_init
 #define res_isourserver		__res_isourserver
-#define res_mkquery		__res_mkquery
-#define res_query		__res_query
-#define res_querydomain		__res_querydomain
-#define res_search		__res_search
-#define res_send		__res_send
+
+#ifdef _LIBC
+# define __RESOLV_DEPRECATED
+# define __RESOLV_DEPRECATED_MSG(msg)
+#else
+# define __RESOLV_DEPRECATED __attribute_deprecated__
+# define __RESOLV_DEPRECATED_MSG(msg) __attribute_deprecated_msg__ (msg)
+#endif
 
 __BEGIN_DECLS
-void		fp_nquery (const unsigned char *, int, FILE *) __THROW;
-void		fp_query (const unsigned char *, FILE *) __THROW;
-const char *	hostalias (const char *) __THROW;
-void		p_query (const unsigned char *) __THROW;
+void		fp_nquery (const unsigned char *, int, FILE *) __THROW
+  __RESOLV_DEPRECATED;
+void		fp_query (const unsigned char *, FILE *) __THROW
+  __RESOLV_DEPRECATED;
+const char *	hostalias (const char *) __THROW
+  __RESOLV_DEPRECATED_MSG ("use getaddrinfo instead");
+void		p_query (const unsigned char *) __THROW
+  __RESOLV_DEPRECATED;
 void		res_close (void) __THROW;
 int		res_init (void) __THROW;
-int		res_isourserver (const struct sockaddr_in *) __THROW;
+int		res_isourserver (const struct sockaddr_in *) __THROW
+  __RESOLV_DEPRECATED;
 int		res_mkquery (int, const char *, int, int,
 			     const unsigned char *, int, const unsigned char *,
 			     unsigned char *, int) __THROW;
@@ -271,10 +205,7 @@ __END_DECLS
 
 #define b64_ntop		__b64_ntop
 #define b64_pton		__b64_pton
-#define dn_comp			__dn_comp
 #define dn_count_labels		__dn_count_labels
-#define dn_expand		__dn_expand
-#define dn_skipname		__dn_skipname
 #define fp_resstat		__fp_resstat
 #define loc_aton		__loc_aton
 #define loc_ntoa		__loc_ntoa
@@ -284,28 +215,15 @@ __END_DECLS
 #define p_fqname		__p_fqname
 #define p_fqnname		__p_fqnname
 #define p_option		__p_option
-#define p_secstodate		__p_secstodate
-#define p_section		__p_section
 #define p_time			__p_time
 #define p_type			__p_type
 #define p_rcode			__p_rcode
 #define putlong			__putlong
 #define putshort		__putshort
-#define res_dnok		__res_dnok
-#define res_hnok		__res_hnok
 #define res_hostalias		__res_hostalias
-#define res_mailok		__res_mailok
 #define res_nameinquery		__res_nameinquery
 #define res_nclose		__res_nclose
 #define res_ninit		__res_ninit
-#define res_nmkquery		__res_nmkquery
-#define res_npquery		__res_npquery
-#define res_nquery		__res_nquery
-#define res_nquerydomain	__res_nquerydomain
-#define res_nsearch		__res_nsearch
-#define res_nsend		__res_nsend
-#define res_nisourserver	__res_nisourserver
-#define res_ownok		__res_ownok
 #define res_queriesmatch	__res_queriesmatch
 #define res_randomid		__res_randomid
 #define sym_ntop		__sym_ntop
@@ -316,56 +234,61 @@ int		res_hnok (const char *) __THROW;
 int		res_ownok (const char *) __THROW;
 int		res_mailok (const char *) __THROW;
 int		res_dnok (const char *) __THROW;
-int		sym_ston (const struct res_sym *, const char *, int *) __THROW;
-const char *	sym_ntos (const struct res_sym *, int, int *) __THROW;
-const char *	sym_ntop (const struct res_sym *, int, int *) __THROW;
+int		sym_ston (const struct res_sym *, const char *, int *) __THROW
+  __RESOLV_DEPRECATED;
+const char *	sym_ntos (const struct res_sym *, int, int *) __THROW
+  __RESOLV_DEPRECATED;
+const char *	sym_ntop (const struct res_sym *, int, int *) __THROW
+  __RESOLV_DEPRECATED;
 int		b64_ntop (const unsigned char *, size_t, char *, size_t)
-     __THROW;
+  __THROW;
 int		b64_pton (char const *, unsigned char *, size_t) __THROW;
-int		loc_aton (const char *__ascii, unsigned char *__binary) __THROW;
-const char *	loc_ntoa (const unsigned char *__binary, char *__ascii) __THROW;
+int		loc_aton (const char *__ascii, unsigned char *__binary) __THROW
+  __RESOLV_DEPRECATED;
+const char *	loc_ntoa (const unsigned char *__binary, char *__ascii) __THROW
+  __RESOLV_DEPRECATED;
 int		dn_skipname (const unsigned char *, const unsigned char *)
-     __THROW;
-void		putlong (uint32_t, unsigned char *) __THROW;
-void		putshort (uint16_t, unsigned char *) __THROW;
-const char *	p_class (int) __THROW;
-const char *	p_time (uint32_t) __THROW;
-const char *	p_type (int) __THROW;
-const char *	p_rcode (int) __THROW;
-const unsigned char * p_cdnname (const unsigned char *,
-				 const unsigned char *, int, FILE *) __THROW;
+  __THROW;
+void		putlong (uint32_t, unsigned char *) __THROW
+  __RESOLV_DEPRECATED_MSG ("use NS_PUT16 instead");
+void		putshort (uint16_t, unsigned char *) __THROW
+  __RESOLV_DEPRECATED_MSG ("use NS_PUT32 instead");
+const char *	p_class (int) __THROW __RESOLV_DEPRECATED;
+const char *	p_time (uint32_t) __THROW __RESOLV_DEPRECATED;
+const char *	p_type (int) __THROW __RESOLV_DEPRECATED;
+const char *	p_rcode (int) __THROW __RESOLV_DEPRECATED;
+const unsigned char * p_cdnname (const unsigned char *, const unsigned char *,
+				 int, FILE *) __THROW __RESOLV_DEPRECATED;
 const unsigned char * p_cdname (const unsigned char *, const unsigned char *,
-				FILE *) __THROW;
+				FILE *) __THROW __RESOLV_DEPRECATED;
 const unsigned char * p_fqnname (const unsigned char *__cp,
 				 const unsigned char *__msg,
-				 int, char *, int) __THROW;
-const unsigned char * p_fqname (const unsigned char *,
-				const unsigned char *, FILE *) __THROW;
-const char *	p_option (unsigned long __option) __THROW;
-char *		p_secstodate (unsigned long) __THROW;
-int		dn_count_labels (const char *) __THROW;
+				 int, char *, int) __THROW __RESOLV_DEPRECATED;
+const unsigned char * p_fqname (const unsigned char *, const unsigned char *,
+				FILE *) __THROW __RESOLV_DEPRECATED;
+const char *	p_option (unsigned long __option) __THROW __RESOLV_DEPRECATED;
+int		dn_count_labels (const char *) __THROW __RESOLV_DEPRECATED;
 int		dn_comp (const char *, unsigned char *, int, unsigned char **,
 			 unsigned char **) __THROW;
 int		dn_expand (const unsigned char *, const unsigned char *,
 			   const unsigned char *, char *, int) __THROW;
-unsigned int	res_randomid (void) __THROW;
+unsigned int	res_randomid (void) __THROW
+  __RESOLV_DEPRECATED_MSG ("use getentropy instead");
 int		res_nameinquery (const char *, int, int,
 				 const unsigned char *,
-				 const unsigned char *) __THROW;
+				 const unsigned char *) __THROW
+  __RESOLV_DEPRECATED;
 int		res_queriesmatch (const unsigned char *,
 				  const unsigned char *,
 				  const unsigned char *,
-				  const unsigned char *) __THROW;
-const char *	p_section (int __section, int __opcode) __THROW;
+				  const unsigned char *) __THROW
+  __RESOLV_DEPRECATED;
 /* Things involving a resolver context. */
 int		res_ninit (res_state) __THROW;
-int		res_nisourserver (const res_state,
-				  const struct sockaddr_in *) __THROW;
-void		fp_resstat (const res_state, FILE *) __THROW;
-void		res_npquery (const res_state, const unsigned char *, int,
-			     FILE *) __THROW;
+void		fp_resstat (const res_state, FILE *) __THROW
+  __RESOLV_DEPRECATED;
 const char *	res_hostalias (const res_state, const char *, char *, size_t)
-     __THROW;
+     __THROW __RESOLV_DEPRECATED_MSG ("use getaddrinfo instead");
 int		res_nquery (res_state, const char *, int, int,
 			    unsigned char *, int) __THROW;
 int		res_nsearch (res_state, const char *, int, int,
@@ -379,7 +302,7 @@ int		res_nmkquery (res_state, int, const char *, int, int,
 int		res_nsend (res_state, const unsigned char *, int,
 			   unsigned char *, int) __THROW;
 void		res_nclose (res_state) __THROW;
+
 __END_DECLS
-#endif
 
 #endif /* !_RESOLV_H_ */

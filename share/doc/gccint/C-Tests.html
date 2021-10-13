@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Copyright (C) 1988-2017 Free Software Foundation, Inc.
+<!-- Copyright (C) 1988-2021 Free Software Foundation, Inc.
 
 Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU Free Documentation License, Version 1.3 or
@@ -19,47 +19,37 @@ A GNU Manual
 You have freedom to copy and modify this GNU Manual, like GNU
      software.  Copies published by the Free Software Foundation raise
      funds for GNU development. -->
-<!-- Created by GNU Texinfo 5.2, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>GNU Compiler Collection (GCC) Internals: C Tests</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>C Tests (GNU Compiler Collection (GCC) Internals)</title>
 
-<meta name="description" content="GNU Compiler Collection (GCC) Internals: C Tests">
-<meta name="keywords" content="GNU Compiler Collection (GCC) Internals: C Tests">
+<meta name="description" content="C Tests (GNU Compiler Collection (GCC) Internals)">
+<meta name="keywords" content="C Tests (GNU Compiler Collection (GCC) Internals)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link href="index.html#Top" rel="start" title="Top">
-<link href="Option-Index.html#Option-Index" rel="index" title="Option Index">
+<link href="index.html" rel="start" title="Top">
+<link href="Option-Index.html" rel="index" title="Option Index">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
-<link href="Testsuites.html#Testsuites" rel="up" title="Testsuites">
-<link href="LTO-Testing.html#LTO-Testing" rel="next" title="LTO Testing">
-<link href="Ada-Tests.html#Ada-Tests" rel="prev" title="Ada Tests">
+<link href="Testsuites.html" rel="up" title="Testsuites">
+<link href="LTO-Testing.html" rel="next" title="LTO Testing">
+<link href="Ada-Tests.html" rel="prev" title="Ada Tests">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
-blockquote.smallquotation {font-size: smaller}
+blockquote.indentedblock {margin-right: 0em}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
-div.indentedblock {margin-left: 3.2em}
 div.lisp {margin-left: 3.2em}
-div.smalldisplay {margin-left: 3.2em}
-div.smallexample {margin-left: 3.2em}
-div.smallindentedblock {margin-left: 3.2em; font-size: smaller}
-div.smalllisp {margin-left: 3.2em}
-kbd {font-style:oblique}
+kbd {font-style: oblique}
 pre.display {font-family: inherit}
 pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: inherit; font-size: smaller}
-pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: inherit; font-size: smaller}
-pre.smalllisp {font-size: smaller}
-span.nocodebreak {white-space:nowrap}
-span.nolinebreak {white-space:nowrap}
-span.roman {font-family:serif; font-weight:normal}
-span.sansserif {font-family:sans-serif; font-weight:normal}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
 ul.no-bullet {list-style: none}
 -->
 </style>
@@ -67,15 +57,13 @@ ul.no-bullet {list-style: none}
 
 </head>
 
-<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
-<a name="C-Tests"></a>
-<div class="header">
+<body lang="en">
+<span id="C-Tests"></span><div class="header">
 <p>
-Next: <a href="LTO-Testing.html#LTO-Testing" accesskey="n" rel="next">LTO Testing</a>, Previous: <a href="Ada-Tests.html#Ada-Tests" accesskey="p" rel="prev">Ada Tests</a>, Up: <a href="Testsuites.html#Testsuites" accesskey="u" rel="up">Testsuites</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Option-Index.html#Option-Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="LTO-Testing.html" accesskey="n" rel="next">LTO Testing</a>, Previous: <a href="Ada-Tests.html" accesskey="p" rel="prev">Ada Tests</a>, Up: <a href="Testsuites.html" accesskey="u" rel="up">Testsuites</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Option-Index.html" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<a name="C-Language-Testsuites"></a>
-<h3 class="section">7.4 C Language Testsuites</h3>
+<span id="C-Language-Testsuites"></span><h3 class="section">7.4 C Language Testsuites</h3>
 
 <p>GCC contains the following C language testsuites, in the
 <samp>gcc/testsuite</samp> directory:
@@ -96,7 +84,7 @@ are not run with multiple optimization options.
 <dt><samp>gcc.dg/compat</samp></dt>
 <dd><p>This subdirectory contains tests for binary compatibility using
 <samp>lib/compat.exp</samp>, which in turn uses the language-independent support
-(see <a href="compat-Testing.html#compat-Testing">Support for testing binary compatibility</a>).
+(see <a href="compat-Testing.html">Support for testing binary compatibility</a>).
 </p></dd>
 <dt><samp>gcc.dg/cpp</samp></dt>
 <dd><p>This subdirectory contains tests of the preprocessor.
@@ -143,7 +131,7 @@ you wish to test for the presence or absence of compiler warnings.
 While special options can be set, and tests disabled on specific
 platforms, by the use of <samp>.x</samp> files, mostly these test cases
 should not contain platform dependencies.  FIXME: discuss how defines
-such as <code>NO_LABEL_VALUES</code> and <code>STACK_SIZE</code> are used.
+such as <code>STACK_SIZE</code> are used.
 </p></dd>
 <dt><samp>gcc.c-torture/execute</samp></dt>
 <dd><p>This testsuite contains test cases that should compile, link and run;
@@ -167,13 +155,13 @@ special-purpose expect files:
 <dd><p>Test <samp>-fbranch-probabilities</samp> using
 <samp>gcc.misc-tests/bprob.exp</samp>, which
 in turn uses the generic, language-independent framework
-(see <a href="profopt-Testing.html#profopt-Testing">Support for testing profile-directed
+(see <a href="profopt-Testing.html">Support for testing profile-directed
 optimizations</a>).
 </p>
 </dd>
 <dt><samp><code>gcov*.c</code></samp></dt>
 <dd><p>Test <code>gcov</code> output using <samp>gcov.exp</samp>, which in turn uses the
-language-independent support (see <a href="gcov-Testing.html#gcov-Testing">Support for testing gcov</a>).
+language-independent support (see <a href="gcov-Testing.html">Support for testing gcov</a>).
 </p>
 </dd>
 <dt><samp><code>i386-pf-*.c</code></samp></dt>
@@ -198,7 +186,7 @@ test cases and magic comments more.
 <hr>
 <div class="header">
 <p>
-Next: <a href="LTO-Testing.html#LTO-Testing" accesskey="n" rel="next">LTO Testing</a>, Previous: <a href="Ada-Tests.html#Ada-Tests" accesskey="p" rel="prev">Ada Tests</a>, Up: <a href="Testsuites.html#Testsuites" accesskey="u" rel="up">Testsuites</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Option-Index.html#Option-Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="LTO-Testing.html" accesskey="n" rel="next">LTO Testing</a>, Previous: <a href="Ada-Tests.html" accesskey="p" rel="prev">Ada Tests</a>, Up: <a href="Testsuites.html" accesskey="u" rel="up">Testsuites</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Option-Index.html" title="Index" rel="index">Index</a>]</p>
 </div>
 
 

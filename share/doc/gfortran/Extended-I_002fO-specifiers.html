@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Copyright (C) 1999-2017 Free Software Foundation, Inc.
+<!-- Copyright (C) 1999-2021 Free Software Foundation, Inc.
 
 Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU Free Documentation License, Version 1.3 or
@@ -19,47 +19,37 @@ A GNU Manual
 You have freedom to copy and modify this GNU Manual, like GNU
      software.  Copies published by the Free Software Foundation raise
      funds for GNU development. -->
-<!-- Created by GNU Texinfo 5.2, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>The GNU Fortran Compiler: Extended I/O specifiers</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Extended I/O specifiers (The GNU Fortran Compiler)</title>
 
-<meta name="description" content="The GNU Fortran Compiler: Extended I/O specifiers">
-<meta name="keywords" content="The GNU Fortran Compiler: Extended I/O specifiers">
+<meta name="description" content="Extended I/O specifiers (The GNU Fortran Compiler)">
+<meta name="keywords" content="Extended I/O specifiers (The GNU Fortran Compiler)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link href="index.html#Top" rel="start" title="Top">
-<link href="Option-Index.html#Option-Index" rel="index" title="Option Index">
+<link href="index.html" rel="start" title="Top">
+<link href="Option-Index.html" rel="index" title="Option Index">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
-<link href="Extensions-implemented-in-GNU-Fortran.html#Extensions-implemented-in-GNU-Fortran" rel="up" title="Extensions implemented in GNU Fortran">
-<link href="Legacy-PARAMETER-statements.html#Legacy-PARAMETER-statements" rel="next" title="Legacy PARAMETER statements">
-<link href="Bitwise-logical-operators.html#Bitwise-logical-operators" rel="prev" title="Bitwise logical operators">
+<link href="Extensions-implemented-in-GNU-Fortran.html" rel="up" title="Extensions implemented in GNU Fortran">
+<link href="Legacy-PARAMETER-statements.html" rel="next" title="Legacy PARAMETER statements">
+<link href="Bitwise-logical-operators.html" rel="prev" title="Bitwise logical operators">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
-blockquote.smallquotation {font-size: smaller}
+blockquote.indentedblock {margin-right: 0em}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
-div.indentedblock {margin-left: 3.2em}
 div.lisp {margin-left: 3.2em}
-div.smalldisplay {margin-left: 3.2em}
-div.smallexample {margin-left: 3.2em}
-div.smallindentedblock {margin-left: 3.2em; font-size: smaller}
-div.smalllisp {margin-left: 3.2em}
-kbd {font-style:oblique}
+kbd {font-style: oblique}
 pre.display {font-family: inherit}
 pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: inherit; font-size: smaller}
-pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: inherit; font-size: smaller}
-pre.smalllisp {font-size: smaller}
-span.nocodebreak {white-space:nowrap}
-span.nolinebreak {white-space:nowrap}
-span.roman {font-family:serif; font-weight:normal}
-span.sansserif {font-family:sans-serif; font-weight:normal}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
 ul.no-bullet {list-style: none}
 -->
 </style>
@@ -67,21 +57,19 @@ ul.no-bullet {list-style: none}
 
 </head>
 
-<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
-<a name="Extended-I_002fO-specifiers"></a>
-<div class="header">
+<body lang="en">
+<span id="Extended-I_002fO-specifiers"></span><div class="header">
 <p>
-Next: <a href="Legacy-PARAMETER-statements.html#Legacy-PARAMETER-statements" accesskey="n" rel="next">Legacy PARAMETER statements</a>, Previous: <a href="Bitwise-logical-operators.html#Bitwise-logical-operators" accesskey="p" rel="prev">Bitwise logical operators</a>, Up: <a href="Extensions-implemented-in-GNU-Fortran.html#Extensions-implemented-in-GNU-Fortran" accesskey="u" rel="up">Extensions implemented in GNU Fortran</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Option-Index.html#Option-Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="Legacy-PARAMETER-statements.html" accesskey="n" rel="next">Legacy PARAMETER statements</a>, Previous: <a href="Bitwise-logical-operators.html" accesskey="p" rel="prev">Bitwise logical operators</a>, Up: <a href="Extensions-implemented-in-GNU-Fortran.html" accesskey="u" rel="up">Extensions implemented in GNU Fortran</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Option-Index.html" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<a name="Extended-I_002fO-specifiers-1"></a>
-<h4 class="subsection">6.1.30 Extended I/O specifiers</h4>
-<a name="index-CARRIAGECONTROL"></a>
-<a name="index-READONLY"></a>
-<a name="index-SHARE"></a>
-<a name="index-SHARED"></a>
-<a name="index-NOSHARED"></a>
-<a name="index-I_002fO-specifiers"></a>
+<span id="Extended-I_002fO-specifiers-1"></span><h4 class="subsection">6.1.32 Extended I/O specifiers</h4>
+<span id="index-CARRIAGECONTROL"></span>
+<span id="index-READONLY"></span>
+<span id="index-SHARE"></span>
+<span id="index-SHARED"></span>
+<span id="index-NOSHARED"></span>
+<span id="index-I_002fO-specifiers"></span>
 
 <p>GNU Fortran supports the additional legacy I/O specifiers
 <code>CARRIAGECONTROL</code>, <code>READONLY</code>, and <code>SHARE</code> with the
@@ -95,8 +83,8 @@ no meaning for readonly files. When <code>CARRAIGECONTROL</code> is specified up
 opening a unit for formatted writing, the exact <code>CARRIAGECONTROL</code> setting
 determines what characters to write between output records. The syntax is:
 </p>
-<div class="smallexample">
-<pre class="smallexample">OPEN(..., CARRIAGECONTROL=cc)
+<div class="example">
+<pre class="example">OPEN(..., CARRIAGECONTROL=cc)
 </pre></div>
 
 <p>Where <em>cc</em> is a character expression that evaluates to one of the
@@ -129,8 +117,8 @@ equivalent to specifying <code>ACTION='READ'</code>, except that the file may no
 deleted on close (i.e. <code>CLOSE</code> with <code>STATUS=&quot;DELETE&quot;</code>). The syntax
 is:
 </p>
-<div class="smallexample">
-<pre class="smallexample"><code>OPEN(..., READONLY)</code>
+<div class="example">
+<pre class="example"><code>OPEN(..., READONLY)</code>
 </pre></div>
 
 </dd>
@@ -139,8 +127,8 @@ is:
 it for controlled access from multiple processes/threads. The <code>SHARE</code>
 specifier has several forms:
 </p>
-<div class="smallexample">
-<pre class="smallexample">OPEN(..., SHARE=sh)
+<div class="example">
+<pre class="example">OPEN(..., SHARE=sh)
 OPEN(..., SHARED)
 OPEN(..., NOSHARED)
 </pre></div>
@@ -170,7 +158,7 @@ supported on other systems.
 <hr>
 <div class="header">
 <p>
-Next: <a href="Legacy-PARAMETER-statements.html#Legacy-PARAMETER-statements" accesskey="n" rel="next">Legacy PARAMETER statements</a>, Previous: <a href="Bitwise-logical-operators.html#Bitwise-logical-operators" accesskey="p" rel="prev">Bitwise logical operators</a>, Up: <a href="Extensions-implemented-in-GNU-Fortran.html#Extensions-implemented-in-GNU-Fortran" accesskey="u" rel="up">Extensions implemented in GNU Fortran</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Option-Index.html#Option-Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="Legacy-PARAMETER-statements.html" accesskey="n" rel="next">Legacy PARAMETER statements</a>, Previous: <a href="Bitwise-logical-operators.html" accesskey="p" rel="prev">Bitwise logical operators</a>, Up: <a href="Extensions-implemented-in-GNU-Fortran.html" accesskey="u" rel="up">Extensions implemented in GNU Fortran</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Option-Index.html" title="Index" rel="index">Index</a>]</p>
 </div>
 
 

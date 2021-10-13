@@ -1,5 +1,5 @@
-/* Hierarchial argument parsing, layered over getopt.
-   Copyright (C) 1995-2017 Free Software Foundation, Inc.
+/* Hierarchical argument parsing, layered over getopt.
+   Copyright (C) 1995-2021 Free Software Foundation, Inc.
    This file is part of the GNU C Library.
    Written by Miles Bader <miles@gnu.ai.mit.edu>.
 
@@ -15,7 +15,7 @@
 
    You should have received a copy of the GNU Lesser General Public
    License along with the GNU C Library; if not, see
-   <http://www.gnu.org/licenses/>.  */
+   <https://www.gnu.org/licenses/>.  */
 
 #ifndef _ARGP_H
 #define _ARGP_H
@@ -24,16 +24,16 @@
 #include <ctype.h>
 #include <getopt.h>
 #include <limits.h>
-
-#define __need_error_t
 #include <errno.h>
-
-#ifndef __error_t_defined
-typedef int error_t;
-# define __error_t_defined
-#endif
 
 __BEGIN_DECLS
+
+/* error_t may or may not be available from errno.h, depending on the
+   operating system.  */
+#ifndef __error_t_defined
+# define __error_t_defined 1
+typedef int error_t;
+#endif
 
 /* A description of a particular option.  A pointer to an array of
    these is passed in the OPTIONS field of an argp structure.  Each option
@@ -233,7 +233,7 @@ struct argp
 };
 
 /* Possible KEY arguments to a help filter function.  */
-#define ARGP_KEY_HELP_PRE_DOC	0x2000001 /* Help text preceeding options. */
+#define ARGP_KEY_HELP_PRE_DOC	0x2000001 /* Help text preceding options. */
 #define ARGP_KEY_HELP_POST_DOC	0x2000002 /* Help text following options. */
 #define ARGP_KEY_HELP_HEADER	0x2000003 /* Option header string. */
 #define ARGP_KEY_HELP_EXTRA	0x2000004 /* After all other documentation;
@@ -447,7 +447,7 @@ extern void __argp_help (const struct argp *__restrict __argp,
    parsing routine (thus taking an argp_state structure as the first
    argument).  They may or may not print an error message and exit, depending
    on the flags in STATE -- in any case, the caller should be prepared for
-   them *not* to exit, and should return an appropiate error after calling
+   them *not* to exit, and should return an appropriate error after calling
    them.  [argp_usage & argp_error should probably be called argp_state_...,
    but they're used often enough that they should be short]  */
 
@@ -553,6 +553,11 @@ __NTH (__option_is_end (const struct argp_option *__opt))
 #  undef __option_is_end
 # endif
 #endif /* Use extern inlines.  */
+
+#include <bits/floatn.h>
+#if defined __LDBL_COMPAT || __LDOUBLE_REDIRECTS_TO_FLOAT128_ABI == 1
+# include <bits/argp-ldbl.h>
+#endif
 
 __END_DECLS
 

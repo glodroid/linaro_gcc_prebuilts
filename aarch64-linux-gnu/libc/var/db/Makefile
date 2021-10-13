@@ -1,7 +1,6 @@
 # Makefile to (re-)generate db versions of system database files.
-# Copyright (C) 1996-2017 Free Software Foundation, Inc.
+# Copyright (C) 1996-2021 Free Software Foundation, Inc.
 # This file is part of the GNU C Library.
-# Contributed by Ulrich Drepper <drepper@cygnus.com>, 1996.
 #
 
 # The GNU C Library is free software; you can redistribute it and/or
@@ -16,7 +15,7 @@
 
 # You should have received a copy of the GNU Lesser General Public
 # License along with the GNU C Library; if not, see
-# <http://www.gnu.org/licenses/>.
+# <https://www.gnu.org/licenses/>.
 
 DATABASES = $(wildcard /etc/passwd /etc/group /etc/ethers /etc/protocols \
 		       /etc/rpc /etc/services /etc/shadow /etc/gshadow \

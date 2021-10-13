@@ -1,5 +1,5 @@
 /* This file defines standard ELF types, structures, and macros.
-   Copyright (C) 1995-2017 Free Software Foundation, Inc.
+   Copyright (C) 1995-2021 Free Software Foundation, Inc.
    This file is part of the GNU C Library.
 
    The GNU C Library is free software; you can redistribute it and/or
@@ -14,14 +14,10 @@
 
    You should have received a copy of the GNU Lesser General Public
    License along with the GNU C Library; if not, see
-   <http://www.gnu.org/licenses/>.  */
+   <https://www.gnu.org/licenses/>.  */
 
 #ifndef _ELF_H
 #define	_ELF_H 1
-
-#include <features.h>
-
-__BEGIN_DECLS
 
 /* Standard ELF types.  */
 
@@ -322,7 +318,7 @@ typedef struct
 				/* reserved 184 */
 #define EM_AVR32	185	/* Amtel 32-bit microprocessor */
 #define EM_STM8		186	/* STMicroelectronics STM8 */
-#define EM_TILE64	187	/* Tileta TILE64 */
+#define EM_TILE64	187	/* Tilera TILE64 */
 #define EM_TILEPRO	188	/* Tilera TILEPro */
 #define EM_MICROBLAZE	189	/* Xilinx MicroBlaze */
 #define EM_CUDA		190	/* NVIDIA CUDA */
@@ -330,7 +326,7 @@ typedef struct
 #define EM_CLOUDSHIELD	192	/* CloudShield */
 #define EM_COREA_1ST	193	/* KIPO-KAIST Core-A 1st gen. */
 #define EM_COREA_2ND	194	/* KIPO-KAIST Core-A 2nd gen. */
-#define EM_ARC_COMPACT2	195	/* Synopsys ARCompact V2 */
+#define EM_ARCV2	195	/* Synopsys ARCv2 ISA.  */
 #define EM_OPEN8	196	/* Open8 RISC */
 #define EM_RL78		197	/* Renesas RL78 */
 #define EM_VIDEOCORE5	198	/* Broadcom VideoCore V */
@@ -340,7 +336,8 @@ typedef struct
 #define EM_BA2		202	/* Beyond BA2 */
 #define EM_XCORE	203	/* XMOS xCORE */
 #define EM_MCHP_PIC	204	/* Microchip 8-bit PIC(r) */
-				/* reserved 205-209 */
+#define EM_INTELGT	205	/* Intel Graphics Technology */
+				/* reserved 206-209 */
 #define EM_KM32		210	/* KM211 KM32 */
 #define EM_KMX32	211	/* KM211 KMX32 */
 #define EM_EMX16	212	/* KM211 KMX16 */
@@ -360,8 +357,9 @@ typedef struct
 #define EM_RISCV	243	/* RISC-V */
 
 #define EM_BPF		247	/* Linux BPF -- in-kernel virtual machine */
+#define EM_CSKY		252     /* C-SKY */
 
-#define EM_NUM		248
+#define EM_NUM		253
 
 /* Old spellings/synonyms.  */
 
@@ -444,7 +442,7 @@ typedef struct
 #define SHT_FINI_ARRAY	  15		/* Array of destructors */
 #define SHT_PREINIT_ARRAY 16		/* Array of pre-constructors */
 #define SHT_GROUP	  17		/* Section group */
-#define SHT_SYMTAB_SHNDX  18		/* Extended section indeces */
+#define SHT_SYMTAB_SHNDX  18		/* Extended section indices */
 #define	SHT_NUM		  19		/* Number of defined types.  */
 #define SHT_LOOS	  0x60000000	/* Start OS-specific.  */
 #define SHT_GNU_ATTRIBUTES 0x6ffffff5	/* Object attributes.  */
@@ -481,6 +479,7 @@ typedef struct
 #define SHF_COMPRESSED	     (1 << 11)	/* Section with compressed data. */
 #define SHF_MASKOS	     0x0ff00000	/* OS-specific.  */
 #define SHF_MASKPROC	     0xf0000000	/* Processor-specific */
+#define SHF_GNU_RETAIN	     (1 << 21)  /* Not to be GCed by linker.  */
 #define SHF_ORDERED	     (1 << 30)	/* Special ordering requirement
 					   (Solaris).  */
 #define SHF_EXCLUDE	     (1U << 31)	/* Section is excluded unless
@@ -720,6 +719,7 @@ typedef struct
 #define PT_GNU_EH_FRAME	0x6474e550	/* GCC .eh_frame_hdr segment */
 #define PT_GNU_STACK	0x6474e551	/* Indicates stack executability */
 #define PT_GNU_RELRO	0x6474e552	/* Read-only after relocation */
+#define PT_GNU_PROPERTY	0x6474e553	/* GNU property */
 #define PT_LOSUNW	0x6ffffffa
 #define PT_SUNWBSS	0x6ffffffa	/* Sun Specific segment */
 #define PT_SUNWSTACK	0x6ffffffb	/* Stack segment */
@@ -739,6 +739,8 @@ typedef struct
 /* Legal values for note segment descriptor types for core files. */
 
 #define NT_PRSTATUS	1		/* Contains copy of prstatus struct */
+#define NT_PRFPREG	2		/* Contains copy of fpregset
+					   struct.  */
 #define NT_FPREGSET	2		/* Contains copy of fpregset struct */
 #define NT_PRPSINFO	3		/* Contains copy of prpsinfo struct */
 #define NT_PRXREG	4		/* Contains copy of prxregset struct */
@@ -762,6 +764,24 @@ typedef struct
 #define NT_PPC_VMX	0x100		/* PowerPC Altivec/VMX registers */
 #define NT_PPC_SPE	0x101		/* PowerPC SPE/EVR registers */
 #define NT_PPC_VSX	0x102		/* PowerPC VSX registers */
+#define NT_PPC_TAR	0x103		/* Target Address Register */
+#define NT_PPC_PPR	0x104		/* Program Priority Register */
+#define NT_PPC_DSCR	0x105		/* Data Stream Control Register */
+#define NT_PPC_EBB	0x106		/* Event Based Branch Registers */
+#define NT_PPC_PMU	0x107		/* Performance Monitor Registers */
+#define NT_PPC_TM_CGPR	0x108		/* TM checkpointed GPR Registers */
+#define NT_PPC_TM_CFPR	0x109		/* TM checkpointed FPR Registers */
+#define NT_PPC_TM_CVMX	0x10a		/* TM checkpointed VMX Registers */
+#define NT_PPC_TM_CVSX	0x10b		/* TM checkpointed VSX Registers */
+#define NT_PPC_TM_SPR	0x10c		/* TM Special Purpose Registers */
+#define NT_PPC_TM_CTAR	0x10d		/* TM checkpointed Target Address
+					   Register */
+#define NT_PPC_TM_CPPR	0x10e		/* TM checkpointed Program Priority
+					   Register */
+#define NT_PPC_TM_CDSCR	0x10f		/* TM checkpointed Data Stream Control
+					   Register */
+#define NT_PPC_PKEY	0x110		/* Memory Protection Keys
+					   registers.  */
 #define NT_386_TLS	0x200		/* i386 TLS slots (struct user_desc) */
 #define NT_386_IOPERM	0x201		/* x86 io permission bitmap (1=deny) */
 #define NT_X86_XSTATE	0x202		/* x86 extended state using xsave */
@@ -774,11 +794,34 @@ typedef struct
 #define NT_S390_LAST_BREAK	0x306	/* s390 breaking event address */
 #define NT_S390_SYSTEM_CALL	0x307	/* s390 system call restart data */
 #define NT_S390_TDB	0x308		/* s390 transaction diagnostic block */
+#define NT_S390_VXRS_LOW	0x309	/* s390 vector registers 0-15
+					   upper half.  */
+#define NT_S390_VXRS_HIGH	0x30a	/* s390 vector registers 16-31.  */
+#define NT_S390_GS_CB	0x30b		/* s390 guarded storage registers.  */
+#define NT_S390_GS_BC	0x30c		/* s390 guarded storage
+					   broadcast control block.  */
+#define NT_S390_RI_CB	0x30d		/* s390 runtime instrumentation.  */
 #define NT_ARM_VFP	0x400		/* ARM VFP/NEON registers */
 #define NT_ARM_TLS	0x401		/* ARM TLS register */
 #define NT_ARM_HW_BREAK	0x402		/* ARM hardware breakpoint registers */
 #define NT_ARM_HW_WATCH	0x403		/* ARM hardware watchpoint registers */
 #define NT_ARM_SYSTEM_CALL	0x404	/* ARM system call number */
+#define NT_ARM_SVE	0x405		/* ARM Scalable Vector Extension
+					   registers */
+#define NT_ARM_PAC_MASK	0x406		/* ARM pointer authentication
+					   code masks.  */
+#define NT_ARM_PACA_KEYS	0x407	/* ARM pointer authentication
+					   address keys.  */
+#define NT_ARM_PACG_KEYS	0x408	/* ARM pointer authentication
+					   generic key.  */
+#define NT_ARM_TAGGED_ADDR_CTRL	0x409	/* AArch64 tagged address
+					   control.  */
+#define NT_ARM_PAC_ENABLED_KEYS	0x40a	/* AArch64 pointer authentication
+					   enabled keys.  */
+#define NT_VMCOREDD	0x700		/* Vmcore Device Dump Note.  */
+#define NT_MIPS_DSP	0x800		/* MIPS DSP ASE registers.  */
+#define NT_MIPS_FP_MODE	0x801		/* MIPS floating-point mode.  */
+#define NT_MIPS_MSA	0x802		/* MIPS SIMD registers.  */
 
 /* Legal values for the note segment descriptor types for object files.  */
 
@@ -843,7 +886,8 @@ typedef struct
 #define DT_ENCODING	32		/* Start of encoded range */
 #define DT_PREINIT_ARRAY 32		/* Array with addresses of preinit fct*/
 #define DT_PREINIT_ARRAYSZ 33		/* size in bytes of DT_PREINIT_ARRAY */
-#define	DT_NUM		34		/* Number used */
+#define DT_SYMTAB_SHNDX	34		/* Address of SYMTAB_SHNDX section */
+#define	DT_NUM		35		/* Number used */
 #define DT_LOOS		0x6000000d	/* Start of OS-specific */
 #define DT_HIOS		0x6ffff000	/* End of OS-specific */
 #define DT_LOPROC	0x70000000	/* Start of processor-specific */
@@ -951,6 +995,11 @@ typedef struct
 #define	DF_1_SYMINTPOSE	0x00800000	/* Object has individual interposers.  */
 #define	DF_1_GLOBAUDIT	0x01000000	/* Global auditing required.  */
 #define	DF_1_SINGLETON	0x02000000	/* Singleton symbols are used.  */
+#define	DF_1_STUB	0x04000000
+#define	DF_1_PIE	0x08000000
+#define	DF_1_KMOD       0x10000000
+#define	DF_1_WEAKFILTER 0x20000000
+#define	DF_1_NOCOMMON   0x40000000
 
 /* Flags for the feature selection in DT_FEATURE_1.  */
 #define DTF_1_PARINIT	0x00000001
@@ -1003,7 +1052,7 @@ typedef struct
 #define	VER_NDX_LORESERVE	0xff00	/* Beginning of reserved entries.  */
 #define	VER_NDX_ELIMINATE	0xff01	/* Symbol is to be eliminated.  */
 
-/* Auxialiary version information.  */
+/* Auxiliary version information.  */
 
 typedef struct
 {
@@ -1170,6 +1219,21 @@ typedef struct
 #define AT_L2_CACHESHAPE	36
 #define AT_L3_CACHESHAPE	37
 
+/* Shapes of the caches, with more room to describe them.
+   *GEOMETRY are comprised of cache line size in bytes in the bottom 16 bits
+   and the cache associativity in the next 16 bits.  */
+#define AT_L1I_CACHESIZE	40
+#define AT_L1I_CACHEGEOMETRY	41
+#define AT_L1D_CACHESIZE	42
+#define AT_L1D_CACHEGEOMETRY	43
+#define AT_L2_CACHESIZE		44
+#define AT_L2_CACHEGEOMETRY	45
+#define AT_L3_CACHESIZE		46
+#define AT_L3_CACHEGEOMETRY	47
+
+#define AT_MINSIGSTKSZ		51 /* Stack needed for signal delivery
+				      (AArch64).  */
+
 /* Note section contents.  Each entry in the note section begins with
    a header of a fixed form.  */
 
@@ -1235,6 +1299,63 @@ typedef struct
 /* Version note generated by GNU gold containing a version string.  */
 #define NT_GNU_GOLD_VERSION	4
 
+/* Program property.  */
+#define NT_GNU_PROPERTY_TYPE_0 5
+
+/* Note section name of program property.   */
+#define NOTE_GNU_PROPERTY_SECTION_NAME ".note.gnu.property"
+
+/* Values used in GNU .note.gnu.property notes (NT_GNU_PROPERTY_TYPE_0).  */
+
+/* Stack size.  */
+#define GNU_PROPERTY_STACK_SIZE			1
+/* No copy relocation on protected data symbol.  */
+#define GNU_PROPERTY_NO_COPY_ON_PROTECTED	2
+
+/* Processor-specific semantics, lo */
+#define GNU_PROPERTY_LOPROC			0xc0000000
+/* Processor-specific semantics, hi */
+#define GNU_PROPERTY_HIPROC			0xdfffffff
+/* Application-specific semantics, lo */
+#define GNU_PROPERTY_LOUSER			0xe0000000
+/* Application-specific semantics, hi */
+#define GNU_PROPERTY_HIUSER			0xffffffff
+
+/* AArch64 specific GNU properties.  */
+#define GNU_PROPERTY_AARCH64_FEATURE_1_AND	0xc0000000
+
+#define GNU_PROPERTY_AARCH64_FEATURE_1_BTI	(1U << 0)
+#define GNU_PROPERTY_AARCH64_FEATURE_1_PAC	(1U << 1)
+
+/* The x86 instruction sets indicated by the corresponding bits are
+   used in program.  Their support in the hardware is optional.  */
+#define GNU_PROPERTY_X86_ISA_1_USED		0xc0010002
+/* The x86 instruction sets indicated by the corresponding bits are
+   used in program and they must be supported by the hardware.   */
+#define GNU_PROPERTY_X86_ISA_1_NEEDED		0xc0008002
+/* X86 processor-specific features used in program.  */
+#define GNU_PROPERTY_X86_FEATURE_1_AND		0xc0000002
+
+/* GNU_PROPERTY_X86_ISA_1_BASELINE: CMOV, CX8 (cmpxchg8b), FPU (fld),
+   MMX, OSFXSR (fxsave), SCE (syscall), SSE and SSE2.  */
+#define GNU_PROPERTY_X86_ISA_1_BASELINE		(1U << 0)
+/* GNU_PROPERTY_X86_ISA_1_V2: GNU_PROPERTY_X86_ISA_1_BASELINE,
+   CMPXCHG16B (cmpxchg16b), LAHF-SAHF (lahf), POPCNT (popcnt), SSE3,
+   SSSE3, SSE4.1 and SSE4.2.  */
+#define GNU_PROPERTY_X86_ISA_1_V2		(1U << 1)
+/* GNU_PROPERTY_X86_ISA_1_V3: GNU_PROPERTY_X86_ISA_1_V2, AVX, AVX2, BMI1,
+   BMI2, F16C, FMA, LZCNT, MOVBE, XSAVE.  */
+#define GNU_PROPERTY_X86_ISA_1_V3		(1U << 2)
+/* GNU_PROPERTY_X86_ISA_1_V4: GNU_PROPERTY_X86_ISA_1_V3, AVX512F,
+   AVX512BW, AVX512CD, AVX512DQ and AVX512VL.  */
+#define GNU_PROPERTY_X86_ISA_1_V4		(1U << 3)
+
+/* This indicates that all executable sections are compatible with
+   IBT.  */
+#define GNU_PROPERTY_X86_FEATURE_1_IBT		(1U << 0)
+/* This indicates that all executable sections are compatible with
+   SHSTK.  */
+#define GNU_PROPERTY_X86_FEATURE_1_SHSTK	(1U << 1)
 
 /* Move records.  */
 typedef struct
@@ -1598,6 +1719,7 @@ typedef struct
 #define SHT_MIPS_EH_REGION	0x70000027
 #define SHT_MIPS_XLATE_OLD	0x70000028
 #define SHT_MIPS_PDR_EXCEPTION	0x70000029
+#define SHT_MIPS_XHASH		0x7000002b
 
 /* Legal values for sh_flags field of Elf32_Shdr.  */
 
@@ -1845,7 +1967,9 @@ typedef struct
    in a PIE as it stores a relative offset from the address of the tag
    rather than an absolute address.  */
 #define DT_MIPS_RLD_MAP_REL  0x70000035
-#define DT_MIPS_NUM	     0x36
+/* GNU-style hash table with xlat.  */
+#define DT_MIPS_XHASH	     0x70000036
+#define DT_MIPS_NUM	     0x37
 
 /* Legal values for DT_MIPS_FLAGS Elf32_Dyn entry.  */
 
@@ -2016,9 +2140,9 @@ enum
 #define EFA_PARISC_1_1		    0x0210 /* PA-RISC 1.1 big-endian.  */
 #define EFA_PARISC_2_0		    0x0214 /* PA-RISC 2.0 big-endian.  */
 
-/* Additional section indeces.  */
+/* Additional section indices.  */
 
-#define SHN_PARISC_ANSI_COMMON	0xff00	   /* Section for tenatively declared
+#define SHN_PARISC_ANSI_COMMON	0xff00	   /* Section for tentatively declared
 					      symbols in ANSI C.  */
 #define SHN_PARISC_HUGE_COMMON	0xff01	   /* Common blocks in huge model.  */
 
@@ -2532,9 +2656,10 @@ enum
 #define DT_PPC64_OPT	(DT_LOPROC + 3)
 #define DT_PPC64_NUM    4
 
-/* PowerPC64 specific values for the DT_PPC64_OPT Dyn entry.  */
+/* PowerPC64 specific bits in the DT_PPC64_OPT Dyn entry.  */
 #define PPC64_OPT_TLS		1
 #define PPC64_OPT_MULTI_TOC	2
+#define PPC64_OPT_LOCALENTRY	4
 
 /* PowerPC64 specific values for the Elf64_Sym st_other field.  */
 #define STO_PPC64_LOCAL_BIT	5
@@ -2746,6 +2871,15 @@ enum
 #define R_AARCH64_TLSDESC      1031	/* TLS Descriptor.  */
 #define R_AARCH64_IRELATIVE	1032	/* STT_GNU_IFUNC relocation.  */
 
+/* AArch64 specific values for the Dyn d_tag field.  */
+#define DT_AARCH64_BTI_PLT	(DT_LOPROC + 1)
+#define DT_AARCH64_PAC_PLT	(DT_LOPROC + 3)
+#define DT_AARCH64_VARIANT_PCS	(DT_LOPROC + 5)
+#define DT_AARCH64_NUM		6
+
+/* AArch64 specific values for the st_other field.  */
+#define STO_AARCH64_VARIANT_PCS 0x80
+
 /* ARM relocs.  */
 
 #define R_ARM_NONE		0	/* No reloc */
@@ -2913,6 +3047,81 @@ enum
 #define R_ARM_RBASE		255
 /* Keep this the last entry.  */
 #define R_ARM_NUM		256
+
+/* C-SKY */
+#define R_CKCORE_NONE               0	/* no reloc */
+#define R_CKCORE_ADDR32             1	/* direct 32 bit (S + A) */
+#define R_CKCORE_PCRELIMM8BY4       2	/* disp ((S + A - P) >> 2) & 0xff   */
+#define R_CKCORE_PCRELIMM11BY2      3	/* disp ((S + A - P) >> 1) & 0x7ff  */
+#define R_CKCORE_PCREL32            5	/* 32-bit rel (S + A - P)           */
+#define R_CKCORE_PCRELJSR_IMM11BY2  6	/* disp ((S + A - P) >>1) & 0x7ff   */
+#define R_CKCORE_RELATIVE           9	/* 32 bit adjust program base(B + A)*/
+#define R_CKCORE_COPY               10	/* 32 bit adjust by program base    */
+#define R_CKCORE_GLOB_DAT           11	/* off between got and sym (S)      */
+#define R_CKCORE_JUMP_SLOT          12	/* PLT entry (S) */
+#define R_CKCORE_GOTOFF             13	/* offset to GOT (S + A - GOT)      */
+#define R_CKCORE_GOTPC              14	/* PC offset to GOT (GOT + A - P)   */
+#define R_CKCORE_GOT32              15	/* 32 bit GOT entry (G) */
+#define R_CKCORE_PLT32              16	/* 32 bit PLT entry (G) */
+#define R_CKCORE_ADDRGOT            17	/* GOT entry in GLOB_DAT (GOT + G)  */
+#define R_CKCORE_ADDRPLT            18	/* PLT entry in GLOB_DAT (GOT + G)  */
+#define R_CKCORE_PCREL_IMM26BY2     19	/* ((S + A - P) >> 1) & 0x3ffffff   */
+#define R_CKCORE_PCREL_IMM16BY2     20	/* disp ((S + A - P) >> 1) & 0xffff */
+#define R_CKCORE_PCREL_IMM16BY4     21	/* disp ((S + A - P) >> 2) & 0xffff */
+#define R_CKCORE_PCREL_IMM10BY2     22	/* disp ((S + A - P) >> 1) & 0x3ff  */
+#define R_CKCORE_PCREL_IMM10BY4     23	/* disp ((S + A - P) >> 2) & 0x3ff  */
+#define R_CKCORE_ADDR_HI16          24	/* high & low 16 bit ADDR */
+                                        /* ((S + A) >> 16) & 0xffff */
+#define R_CKCORE_ADDR_LO16          25	/* (S + A) & 0xffff */
+#define R_CKCORE_GOTPC_HI16         26	/* high & low 16 bit GOTPC */
+                                        /* ((GOT + A - P) >> 16) & 0xffff */
+#define R_CKCORE_GOTPC_LO16         27	/* (GOT + A - P) & 0xffff */
+#define R_CKCORE_GOTOFF_HI16        28	/* high & low 16 bit GOTOFF */
+                                        /* ((S + A - GOT) >> 16) & 0xffff */
+#define R_CKCORE_GOTOFF_LO16        29	/* (S + A - GOT) & 0xffff */
+#define R_CKCORE_GOT12              30	/* 12 bit disp GOT entry (G) */
+#define R_CKCORE_GOT_HI16           31	/* high & low 16 bit GOT */
+                                        /* (G >> 16) & 0xffff */
+#define R_CKCORE_GOT_LO16           32	/* (G & 0xffff) */
+#define R_CKCORE_PLT12              33	/* 12 bit disp PLT entry (G) */
+#define R_CKCORE_PLT_HI16           34	/* high & low 16 bit PLT */
+                                        /* (G >> 16) & 0xffff */
+#define R_CKCORE_PLT_LO16           35	/* G & 0xffff */
+#define R_CKCORE_ADDRGOT_HI16       36	/* high & low 16 bit ADDRGOT */
+                                        /* (GOT + G * 4) & 0xffff */
+#define R_CKCORE_ADDRGOT_LO16       37	/* (GOT + G * 4) & 0xffff */
+#define R_CKCORE_ADDRPLT_HI16       38	/* high & low 16 bit ADDRPLT */
+                                        /* ((GOT + G * 4) >> 16) & 0xFFFF */
+#define R_CKCORE_ADDRPLT_LO16       39	/* (GOT+G*4) & 0xffff */
+#define R_CKCORE_PCREL_JSR_IMM26BY2 40	/* disp ((S+A-P) >>1) & x3ffffff */
+#define R_CKCORE_TOFFSET_LO16       41	/* (S+A-BTEXT) & 0xffff */
+#define R_CKCORE_DOFFSET_LO16       42	/* (S+A-BTEXT) & 0xffff */
+#define R_CKCORE_PCREL_IMM18BY2     43	/* disp ((S+A-P) >>1) & 0x3ffff */
+#define R_CKCORE_DOFFSET_IMM18      44	/* disp (S+A-BDATA) & 0x3ffff */
+#define R_CKCORE_DOFFSET_IMM18BY2   45	/* disp ((S+A-BDATA)>>1) & 0x3ffff */
+#define R_CKCORE_DOFFSET_IMM18BY4   46	/* disp ((S+A-BDATA)>>2) & 0x3ffff */
+#define R_CKCORE_GOT_IMM18BY4       48	/* disp (G >> 2) */
+#define R_CKCORE_PLT_IMM18BY4       49	/* disp (G >> 2) */
+#define R_CKCORE_PCREL_IMM7BY4      50	/* disp ((S+A-P) >>2) & 0x7f */
+#define R_CKCORE_TLS_LE32           51	/* 32 bit offset to TLS block */
+#define R_CKCORE_TLS_IE32           52
+#define R_CKCORE_TLS_GD32           53
+#define R_CKCORE_TLS_LDM32          54
+#define R_CKCORE_TLS_LDO32          55
+#define R_CKCORE_TLS_DTPMOD32       56
+#define R_CKCORE_TLS_DTPOFF32       57
+#define R_CKCORE_TLS_TPOFF32        58
+
+/* C-SKY elf header definition.  */
+#define EF_CSKY_ABIMASK		    0XF0000000
+#define EF_CSKY_OTHER		    0X0FFF0000
+#define EF_CSKY_PROCESSOR	    0X0000FFFF
+
+#define EF_CSKY_ABIV1		    0X10000000
+#define EF_CSKY_ABIV2		    0X20000000
+
+/* C-SKY attributes section.  */
+#define SHT_CSKY_ATTRIBUTES	    (SHT_LOPROC + 1)
 
 /* IA-64 specific declarations.  */
 
@@ -3267,6 +3476,9 @@ enum
 					   offset to GOT entry with REX prefix,
 					   relaxable.  */
 #define R_X86_64_NUM		43
+
+/* x86-64 sh_type values.  */
+#define SHT_X86_64_UNWIND	0x70000001 /* Unwind information.  */
 
 
 /* AM33 relocations.  */
@@ -3677,10 +3889,78 @@ enum
 
 #define R_TILEGX_NUM		130
 
+/* RISC-V ELF Flags */
+#define EF_RISCV_RVC 			0x0001
+#define EF_RISCV_FLOAT_ABI 		0x0006
+#define EF_RISCV_FLOAT_ABI_SOFT 	0x0000
+#define EF_RISCV_FLOAT_ABI_SINGLE 	0x0002
+#define EF_RISCV_FLOAT_ABI_DOUBLE 	0x0004
+#define EF_RISCV_FLOAT_ABI_QUAD 	0x0006
+
+/* RISC-V relocations.  */
+#define R_RISCV_NONE		 0
+#define R_RISCV_32		 1
+#define R_RISCV_64		 2
+#define R_RISCV_RELATIVE	 3
+#define R_RISCV_COPY		 4
+#define R_RISCV_JUMP_SLOT	 5
+#define R_RISCV_TLS_DTPMOD32	 6
+#define R_RISCV_TLS_DTPMOD64	 7
+#define R_RISCV_TLS_DTPREL32	 8
+#define R_RISCV_TLS_DTPREL64	 9
+#define R_RISCV_TLS_TPREL32	10
+#define R_RISCV_TLS_TPREL64	11
+#define R_RISCV_BRANCH		16
+#define R_RISCV_JAL		17
+#define R_RISCV_CALL		18
+#define R_RISCV_CALL_PLT	19
+#define R_RISCV_GOT_HI20	20
+#define R_RISCV_TLS_GOT_HI20	21
+#define R_RISCV_TLS_GD_HI20	22
+#define R_RISCV_PCREL_HI20	23
+#define R_RISCV_PCREL_LO12_I	24
+#define R_RISCV_PCREL_LO12_S	25
+#define R_RISCV_HI20		26
+#define R_RISCV_LO12_I		27
+#define R_RISCV_LO12_S		28
+#define R_RISCV_TPREL_HI20	29
+#define R_RISCV_TPREL_LO12_I	30
+#define R_RISCV_TPREL_LO12_S	31
+#define R_RISCV_TPREL_ADD	32
+#define R_RISCV_ADD8		33
+#define R_RISCV_ADD16		34
+#define R_RISCV_ADD32		35
+#define R_RISCV_ADD64		36
+#define R_RISCV_SUB8		37
+#define R_RISCV_SUB16		38
+#define R_RISCV_SUB32		39
+#define R_RISCV_SUB64		40
+#define R_RISCV_GNU_VTINHERIT	41
+#define R_RISCV_GNU_VTENTRY	42
+#define R_RISCV_ALIGN		43
+#define R_RISCV_RVC_BRANCH	44
+#define R_RISCV_RVC_JUMP	45
+#define R_RISCV_RVC_LUI		46
+#define R_RISCV_GPREL_I		47
+#define R_RISCV_GPREL_S		48
+#define R_RISCV_TPREL_I		49
+#define R_RISCV_TPREL_S		50
+#define R_RISCV_RELAX		51
+#define R_RISCV_SUB6		52
+#define R_RISCV_SET6		53
+#define R_RISCV_SET8		54
+#define R_RISCV_SET16		55
+#define R_RISCV_SET32		56
+#define R_RISCV_32_PCREL	57
+#define R_RISCV_IRELATIVE	58
+
+#define R_RISCV_NUM		59
+
 /* BPF specific declarations.  */
 
 #define R_BPF_NONE		0	/* No reloc */
-#define R_BPF_MAP_FD		1	/* Map fd to pointer */
+#define R_BPF_64_64		1
+#define R_BPF_64_32		10
 
 /* Imagination Meta specific relocations. */
 
@@ -3691,7 +3971,7 @@ enum
 #define R_METAG_RELBRANCH	4
 #define R_METAG_GETSETOFF	5
 
-/* Backward compatability */
+/* Backward compatibility */
 #define R_METAG_REG32OP1	6
 #define R_METAG_REG32OP2	7
 #define R_METAG_REG32OP3	8
@@ -3744,6 +4024,82 @@ enum
 #define R_METAG_TLS_LE_HI16	60
 #define R_METAG_TLS_LE_LO16	61
 
-__END_DECLS
+/* NDS32 relocations.  */
+#define R_NDS32_NONE		0
+#define R_NDS32_32_RELA 	20
+#define R_NDS32_COPY		39
+#define R_NDS32_GLOB_DAT	40
+#define R_NDS32_JMP_SLOT	41
+#define R_NDS32_RELATIVE	42
+#define R_NDS32_TLS_TPOFF	102
+#define R_NDS32_TLS_DESC	119
+
+/* ARCompact/ARCv2 specific relocs.  */
+#define R_ARC_NONE		0x0
+#define R_ARC_8			0x1
+#define R_ARC_16		0x2
+#define R_ARC_24		0x3
+#define R_ARC_32		0x4
+#define R_ARC_B26		0x5
+#define R_ARC_B22_PCREL		0x6
+#define R_ARC_H30		0x7
+#define R_ARC_N8		0x8
+#define R_ARC_N16		0x9
+#define R_ARC_N24		0xA
+#define R_ARC_N32		0xB
+#define R_ARC_SDA		0xC
+#define R_ARC_SECTOFF		0xD
+#define R_ARC_S21H_PCREL	0xE
+#define R_ARC_S21W_PCREL	0xF
+#define R_ARC_S25H_PCREL	0x10
+#define R_ARC_S25W_PCREL	0x11
+#define R_ARC_SDA32		0x12
+#define R_ARC_SDA_LDST		0x13
+#define R_ARC_SDA_LDST1		0x14
+#define R_ARC_SDA_LDST2		0x15
+#define R_ARC_SDA16_LD		0x16
+#define R_ARC_SDA16_LD1		0x17
+#define R_ARC_SDA16_LD2		0x18
+#define R_ARC_S13_PCREL		0x19
+#define R_ARC_W			0x1A
+#define R_ARC_32_ME		0x1B
+#define R_ARC_N32_ME		0x1C
+#define R_ARC_SECTOFF_ME	0x1D
+#define R_ARC_SDA32_ME		0x1E
+#define R_ARC_W_ME		0x1F
+#define R_ARC_H30_ME		0x20
+#define R_ARC_SECTOFF_U8	0x21
+#define R_ARC_SECTOFF_S9	0x22
+#define R_AC_SECTOFF_U8		0x23
+#define R_AC_SECTOFF_U8_1	0x24
+#define R_AC_SECTOFF_U8_2	0x25
+#define R_AC_SECTOFF_S9		0x26
+#define R_AC_SECTOFF_S9_1	0x27
+#define R_AC_SECTOFF_S9_2	0x28
+#define R_ARC_SECTOFF_ME_1	0x29
+#define R_ARC_SECTOFF_ME_2	0x2A
+#define R_ARC_SECTOFF_1		0x2B
+#define R_ARC_SECTOFF_2		0x2C
+#define R_ARC_PC32		0x32
+#define R_ARC_GOTPC32		0x33
+#define R_ARC_PLT32		0x34
+#define R_ARC_COPY		0x35
+#define R_ARC_GLOB_DAT		0x36
+#define R_ARC_JUMP_SLOT		0x37
+#define R_ARC_RELATIVE		0x38
+#define R_ARC_GOTOFF		0x39
+#define R_ARC_GOTPC		0x3A
+#define R_ARC_GOT32		0x3B
+
+#define R_ARC_TLS_DTPMOD	0x42
+#define R_ARC_TLS_DTPOFF	0x43
+#define R_ARC_TLS_TPOFF		0x44
+#define R_ARC_TLS_GD_GOT	0x45
+#define R_ARC_TLS_GD_LD	        0x46
+#define R_ARC_TLS_GD_CALL	0x47
+#define R_ARC_TLS_IE_GOT	0x48
+#define R_ARC_TLS_DTPOFF_S9	0x4a
+#define R_ARC_TLS_LE_S9		0x4a
+#define R_ARC_TLS_LE_32		0x4b
 
 #endif	/* elf.h */

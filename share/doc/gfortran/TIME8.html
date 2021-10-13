@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Copyright (C) 1999-2017 Free Software Foundation, Inc.
+<!-- Copyright (C) 1999-2021 Free Software Foundation, Inc.
 
 Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU Free Documentation License, Version 1.3 or
@@ -19,47 +19,37 @@ A GNU Manual
 You have freedom to copy and modify this GNU Manual, like GNU
      software.  Copies published by the Free Software Foundation raise
      funds for GNU development. -->
-<!-- Created by GNU Texinfo 5.2, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>The GNU Fortran Compiler: TIME8</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>TIME8 (The GNU Fortran Compiler)</title>
 
-<meta name="description" content="The GNU Fortran Compiler: TIME8">
-<meta name="keywords" content="The GNU Fortran Compiler: TIME8">
+<meta name="description" content="TIME8 (The GNU Fortran Compiler)">
+<meta name="keywords" content="TIME8 (The GNU Fortran Compiler)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link href="index.html#Top" rel="start" title="Top">
-<link href="Option-Index.html#Option-Index" rel="index" title="Option Index">
+<link href="index.html" rel="start" title="Top">
+<link href="Option-Index.html" rel="index" title="Option Index">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
-<link href="Intrinsic-Procedures.html#Intrinsic-Procedures" rel="up" title="Intrinsic Procedures">
-<link href="TINY.html#TINY" rel="next" title="TINY">
-<link href="TIME.html#TIME" rel="prev" title="TIME">
+<link href="Intrinsic-Procedures.html" rel="up" title="Intrinsic Procedures">
+<link href="TINY.html" rel="next" title="TINY">
+<link href="TIME.html" rel="prev" title="TIME">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
-blockquote.smallquotation {font-size: smaller}
+blockquote.indentedblock {margin-right: 0em}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
-div.indentedblock {margin-left: 3.2em}
 div.lisp {margin-left: 3.2em}
-div.smalldisplay {margin-left: 3.2em}
-div.smallexample {margin-left: 3.2em}
-div.smallindentedblock {margin-left: 3.2em; font-size: smaller}
-div.smalllisp {margin-left: 3.2em}
-kbd {font-style:oblique}
+kbd {font-style: oblique}
 pre.display {font-family: inherit}
 pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: inherit; font-size: smaller}
-pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: inherit; font-size: smaller}
-pre.smalllisp {font-size: smaller}
-span.nocodebreak {white-space:nowrap}
-span.nolinebreak {white-space:nowrap}
-span.roman {font-family:serif; font-weight:normal}
-span.sansserif {font-family:sans-serif; font-weight:normal}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
 ul.no-bullet {list-style: none}
 -->
 </style>
@@ -67,24 +57,22 @@ ul.no-bullet {list-style: none}
 
 </head>
 
-<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
-<a name="TIME8"></a>
-<div class="header">
+<body lang="en">
+<span id="TIME8"></span><div class="header">
 <p>
-Next: <a href="TINY.html#TINY" accesskey="n" rel="next">TINY</a>, Previous: <a href="TIME.html#TIME" accesskey="p" rel="prev">TIME</a>, Up: <a href="Intrinsic-Procedures.html#Intrinsic-Procedures" accesskey="u" rel="up">Intrinsic Procedures</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Option-Index.html#Option-Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="TINY.html" accesskey="n" rel="next">TINY</a>, Previous: <a href="TIME.html" accesskey="p" rel="prev">TIME</a>, Up: <a href="Intrinsic-Procedures.html" accesskey="u" rel="up">Intrinsic Procedures</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Option-Index.html" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<a name="TIME8-_002d_002d_002d-Time-function-_002864_002dbit_0029"></a>
-<h3 class="section">9.268 <code>TIME8</code> &mdash; Time function (64-bit)</h3>
-<a name="index-TIME8"></a>
-<a name="index-time_002c-current-4"></a>
-<a name="index-current-time-4"></a>
+<span id="TIME8-_002d_002d_002d-Time-function-_002864_002dbit_0029"></span><h3 class="section">9.271 <code>TIME8</code> &mdash; Time function (64-bit)</h3>
+<span id="index-TIME8"></span>
+<span id="index-time_002c-current-4"></span>
+<span id="index-current-time-4"></span>
 
 <dl compact="compact">
 <dt><em>Description</em>:</dt>
 <dd><p>Returns the current time encoded as an integer (in the manner of the
 function <code>time(3)</code> in the C standard library). This value is
-suitable for passing to <a href="CTIME.html#CTIME">CTIME</a>, <a href="GMTIME.html#GMTIME">GMTIME</a>, and <a href="LTIME.html#LTIME">LTIME</a>.
+suitable for passing to <a href="CTIME.html">CTIME</a>, <a href="GMTIME.html">GMTIME</a>, and <a href="LTIME.html">LTIME</a>.
 </p>
 <p><em>Warning:</em> this intrinsic does not increase the range of the timing
 values over that returned by <code>time(3)</code>. On a system with a 32-bit
@@ -112,9 +100,13 @@ less than previous values during a single run of the compiled program.
 </p>
 </dd>
 <dt><em>See also</em>:</dt>
-<dd><p><a href="DATE_005fAND_005fTIME.html#DATE_005fAND_005fTIME">DATE_AND_TIME</a>, <a href="CTIME.html#CTIME">CTIME</a>, <a href="GMTIME.html#GMTIME">GMTIME</a>, <a href="LTIME.html#LTIME">LTIME</a>, <a href="MCLOCK8.html#MCLOCK8">MCLOCK8</a>, <a href="TIME.html#TIME">TIME</a>
-</p>
-</dd>
+<dd><p><a href="DATE_005fAND_005fTIME.html">DATE_AND_TIME</a>, 
+<a href="CTIME.html">CTIME</a>, 
+<a href="GMTIME.html">GMTIME</a>, 
+<a href="LTIME.html">LTIME</a>, 
+<a href="MCLOCK8.html">MCLOCK8</a>, 
+<a href="TIME.html">TIME</a>
+</p></dd>
 </dl>
 
 

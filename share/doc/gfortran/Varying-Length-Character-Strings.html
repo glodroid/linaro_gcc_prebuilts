@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Copyright (C) 1999-2017 Free Software Foundation, Inc.
+<!-- Copyright (C) 1999-2021 Free Software Foundation, Inc.
 
 Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU Free Documentation License, Version 1.3 or
@@ -19,47 +19,37 @@ A GNU Manual
 You have freedom to copy and modify this GNU Manual, like GNU
      software.  Copies published by the Free Software Foundation raise
      funds for GNU development. -->
-<!-- Created by GNU Texinfo 5.2, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>The GNU Fortran Compiler: Varying Length Character Strings</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Varying Length Character Strings (The GNU Fortran Compiler)</title>
 
-<meta name="description" content="The GNU Fortran Compiler: Varying Length Character Strings">
-<meta name="keywords" content="The GNU Fortran Compiler: Varying Length Character Strings">
+<meta name="description" content="Varying Length Character Strings (The GNU Fortran Compiler)">
+<meta name="keywords" content="Varying Length Character Strings (The GNU Fortran Compiler)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link href="index.html#Top" rel="start" title="Top">
-<link href="Option-Index.html#Option-Index" rel="index" title="Option Index">
+<link href="index.html" rel="start" title="Top">
+<link href="Option-Index.html" rel="index" title="Option Index">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
-<link href="Standards.html#Standards" rel="up" title="Standards">
-<link href="Invoking-GNU-Fortran.html#Invoking-GNU-Fortran" rel="next" title="Invoking GNU Fortran">
-<link href="Standards.html#Standards" rel="prev" title="Standards">
+<link href="Standards.html" rel="up" title="Standards">
+<link href="Invoking-GNU-Fortran.html" rel="next" title="Invoking GNU Fortran">
+<link href="Standards.html" rel="prev" title="Standards">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
-blockquote.smallquotation {font-size: smaller}
+blockquote.indentedblock {margin-right: 0em}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
-div.indentedblock {margin-left: 3.2em}
 div.lisp {margin-left: 3.2em}
-div.smalldisplay {margin-left: 3.2em}
-div.smallexample {margin-left: 3.2em}
-div.smallindentedblock {margin-left: 3.2em; font-size: smaller}
-div.smalllisp {margin-left: 3.2em}
-kbd {font-style:oblique}
+kbd {font-style: oblique}
 pre.display {font-family: inherit}
 pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: inherit; font-size: smaller}
-pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: inherit; font-size: smaller}
-pre.smalllisp {font-size: smaller}
-span.nocodebreak {white-space:nowrap}
-span.nolinebreak {white-space:nowrap}
-span.roman {font-family:serif; font-weight:normal}
-span.sansserif {font-family:sans-serif; font-weight:normal}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
 ul.no-bullet {list-style: none}
 -->
 </style>
@@ -67,18 +57,16 @@ ul.no-bullet {list-style: none}
 
 </head>
 
-<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
-<a name="Varying-Length-Character-Strings"></a>
-<div class="header">
+<body lang="en">
+<span id="Varying-Length-Character-Strings"></span><div class="header">
 <p>
-Up: <a href="Standards.html#Standards" accesskey="u" rel="up">Standards</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Option-Index.html#Option-Index" title="Index" rel="index">Index</a>]</p>
+Up: <a href="Standards.html" accesskey="u" rel="up">Standards</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Option-Index.html" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<a name="Varying-Length-Character-Strings-1"></a>
-<h4 class="subsection">1.6.1 Varying Length Character Strings</h4>
-<a name="index-Varying-length-character-strings"></a>
-<a name="index-Varying-length-strings"></a>
-<a name="index-strings_002c-varying-length"></a>
+<span id="Varying-Length-Character-Strings-1"></span><h4 class="subsection">1.6.1 Varying Length Character Strings</h4>
+<span id="index-Varying-length-character-strings"></span>
+<span id="index-Varying-length-strings"></span>
+<span id="index-strings_002c-varying-length"></span>
 
 <p>The Fortran 95 standard specifies in Part 2 (ISO/IEC 1539-2:2000)
 varying length character strings.  While GNU Fortran currently does not

@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Copyright (C) 1999-2017 Free Software Foundation, Inc.
+<!-- Copyright (C) 1999-2021 Free Software Foundation, Inc.
 
 Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU Free Documentation License, Version 1.3 or
@@ -19,47 +19,37 @@ A GNU Manual
 You have freedom to copy and modify this GNU Manual, like GNU
      software.  Copies published by the Free Software Foundation raise
      funds for GNU development. -->
-<!-- Created by GNU Texinfo 5.2, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>The GNU Fortran Compiler: STRUCTURE and RECORD</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>STRUCTURE and RECORD (The GNU Fortran Compiler)</title>
 
-<meta name="description" content="The GNU Fortran Compiler: STRUCTURE and RECORD">
-<meta name="keywords" content="The GNU Fortran Compiler: STRUCTURE and RECORD">
+<meta name="description" content="STRUCTURE and RECORD (The GNU Fortran Compiler)">
+<meta name="keywords" content="STRUCTURE and RECORD (The GNU Fortran Compiler)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link href="index.html#Top" rel="start" title="Top">
-<link href="Option-Index.html#Option-Index" rel="index" title="Option Index">
+<link href="index.html" rel="start" title="Top">
+<link href="Option-Index.html" rel="index" title="Option Index">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
-<link href="Extensions-implemented-in-GNU-Fortran.html#Extensions-implemented-in-GNU-Fortran" rel="up" title="Extensions implemented in GNU Fortran">
-<link href="UNION-and-MAP.html#UNION-and-MAP" rel="next" title="UNION and MAP">
-<link href="Read_002fWrite-after-EOF-marker.html#Read_002fWrite-after-EOF-marker" rel="prev" title="Read/Write after EOF marker">
+<link href="Extensions-implemented-in-GNU-Fortran.html" rel="up" title="Extensions implemented in GNU Fortran">
+<link href="UNION-and-MAP.html" rel="next" title="UNION and MAP">
+<link href="Read_002fWrite-after-EOF-marker.html" rel="prev" title="Read/Write after EOF marker">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
-blockquote.smallquotation {font-size: smaller}
+blockquote.indentedblock {margin-right: 0em}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
-div.indentedblock {margin-left: 3.2em}
 div.lisp {margin-left: 3.2em}
-div.smalldisplay {margin-left: 3.2em}
-div.smallexample {margin-left: 3.2em}
-div.smallindentedblock {margin-left: 3.2em; font-size: smaller}
-div.smalllisp {margin-left: 3.2em}
-kbd {font-style:oblique}
+kbd {font-style: oblique}
 pre.display {font-family: inherit}
 pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: inherit; font-size: smaller}
-pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: inherit; font-size: smaller}
-pre.smalllisp {font-size: smaller}
-span.nocodebreak {white-space:nowrap}
-span.nolinebreak {white-space:nowrap}
-span.roman {font-family:serif; font-weight:normal}
-span.sansserif {font-family:sans-serif; font-weight:normal}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
 ul.no-bullet {list-style: none}
 -->
 </style>
@@ -67,17 +57,15 @@ ul.no-bullet {list-style: none}
 
 </head>
 
-<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
-<a name="STRUCTURE-and-RECORD"></a>
-<div class="header">
+<body lang="en">
+<span id="STRUCTURE-and-RECORD"></span><div class="header">
 <p>
-Next: <a href="UNION-and-MAP.html#UNION-and-MAP" accesskey="n" rel="next">UNION and MAP</a>, Previous: <a href="Read_002fWrite-after-EOF-marker.html#Read_002fWrite-after-EOF-marker" accesskey="p" rel="prev">Read/Write after EOF marker</a>, Up: <a href="Extensions-implemented-in-GNU-Fortran.html#Extensions-implemented-in-GNU-Fortran" accesskey="u" rel="up">Extensions implemented in GNU Fortran</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Option-Index.html#Option-Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="UNION-and-MAP.html" accesskey="n" rel="next">UNION and MAP</a>, Previous: <a href="Read_002fWrite-after-EOF-marker.html" accesskey="p" rel="prev">Read/Write after EOF marker</a>, Up: <a href="Extensions-implemented-in-GNU-Fortran.html" accesskey="u" rel="up">Extensions implemented in GNU Fortran</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Option-Index.html" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<a name="STRUCTURE-and-RECORD-1"></a>
-<h4 class="subsection">6.1.20 <code>STRUCTURE</code> and <code>RECORD</code></h4>
-<a name="index-STRUCTURE"></a>
-<a name="index-RECORD"></a>
+<span id="STRUCTURE-and-RECORD-1"></span><h4 class="subsection">6.1.22 <code>STRUCTURE</code> and <code>RECORD</code></h4>
+<span id="index-STRUCTURE"></span>
+<span id="index-RECORD"></span>
 
 <p>Record structures are a pre-Fortran-90 vendor extension to create
 user-defined aggregate data types.  Support for record structures in GNU
@@ -155,11 +143,25 @@ rules and exceptions:
 <li> Structures act like derived types with the <code>SEQUENCE</code> attribute.
 Otherwise they may contain no specifiers.
 
+</li><li> Structures may contain a special field with the name <code>%FILL</code>.
+This will create an anonymous component which cannot be accessed but occupies
+space just as if a component of the same type was declared in its place, useful
+for alignment purposes.  As an example, the following structure will consist
+of at least sixteen bytes:
+
+<div class="example">
+<pre class="example">structure /padded/
+  character(4) start
+  character(8) %FILL
+  character(4) end
+end structure
+</pre></div>
+
 </li><li> Structures may share names with other symbols. For example, the following
 is invalid for derived types, but valid for structures:
 
-<div class="smallexample">
-<pre class="smallexample">structure /header/
+<div class="example">
+<pre class="example">structure /header/
   ! ...
 end structure
 record /header/ header
@@ -167,8 +169,8 @@ record /header/ header
 
 </li><li> Structure types may be declared nested within another parent structure.
 The syntax is:
-<div class="smallexample">
-<pre class="smallexample">structure /type-name/
+<div class="example">
+<pre class="example">structure /type-name/
     ...
     structure [/&lt;type-name&gt;/] &lt;field-list&gt;
 ...
@@ -181,7 +183,7 @@ following shows some examples:
 <div class="example">
 <pre class="example">structure /appointment/
   ! nested structure definition: app_time is an array of two 'time'
-  structure /time/ app_time (2) 
+  structure /time/ app_time (2)
     integer(1) hour, minute
   end structure
   character(10) memo
@@ -203,10 +205,10 @@ end structure
 </pre></div>
 
 </li><li> Structures may contain <code>UNION</code> blocks. For more detail see the
-section on <a href="UNION-and-MAP.html#UNION-and-MAP">UNION and MAP</a>.
+section on <a href="UNION-and-MAP.html">UNION and MAP</a>.
 
 </li><li> Structures support old-style initialization of components, like
-those described in <a href="Old_002dstyle-variable-initialization.html#Old_002dstyle-variable-initialization">Old-style variable initialization</a>. For array
+those described in <a href="Old_002dstyle-variable-initialization.html">Old-style variable initialization</a>. For array
 initializers, an initializer may contain a repeat specification of the form
 <code>&lt;literal-integer&gt; * &lt;constant-initializer&gt;</code>. The value of the integer
 indicates the number of times to repeat the constant initializer when expanding
@@ -216,7 +218,7 @@ the initializer list.
 <hr>
 <div class="header">
 <p>
-Next: <a href="UNION-and-MAP.html#UNION-and-MAP" accesskey="n" rel="next">UNION and MAP</a>, Previous: <a href="Read_002fWrite-after-EOF-marker.html#Read_002fWrite-after-EOF-marker" accesskey="p" rel="prev">Read/Write after EOF marker</a>, Up: <a href="Extensions-implemented-in-GNU-Fortran.html#Extensions-implemented-in-GNU-Fortran" accesskey="u" rel="up">Extensions implemented in GNU Fortran</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Option-Index.html#Option-Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="UNION-and-MAP.html" accesskey="n" rel="next">UNION and MAP</a>, Previous: <a href="Read_002fWrite-after-EOF-marker.html" accesskey="p" rel="prev">Read/Write after EOF marker</a>, Up: <a href="Extensions-implemented-in-GNU-Fortran.html" accesskey="u" rel="up">Extensions implemented in GNU Fortran</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Option-Index.html" title="Index" rel="index">Index</a>]</p>
 </div>
 
 

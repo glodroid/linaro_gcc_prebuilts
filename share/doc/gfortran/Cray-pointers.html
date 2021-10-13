@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Copyright (C) 1999-2017 Free Software Foundation, Inc.
+<!-- Copyright (C) 1999-2021 Free Software Foundation, Inc.
 
 Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU Free Documentation License, Version 1.3 or
@@ -19,47 +19,37 @@ A GNU Manual
 You have freedom to copy and modify this GNU Manual, like GNU
      software.  Copies published by the Free Software Foundation raise
      funds for GNU development. -->
-<!-- Created by GNU Texinfo 5.2, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>The GNU Fortran Compiler: Cray pointers</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Cray pointers (The GNU Fortran Compiler)</title>
 
-<meta name="description" content="The GNU Fortran Compiler: Cray pointers">
-<meta name="keywords" content="The GNU Fortran Compiler: Cray pointers">
+<meta name="description" content="Cray pointers (The GNU Fortran Compiler)">
+<meta name="keywords" content="Cray pointers (The GNU Fortran Compiler)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link href="index.html#Top" rel="start" title="Top">
-<link href="Option-Index.html#Option-Index" rel="index" title="Option Index">
+<link href="index.html" rel="start" title="Top">
+<link href="Option-Index.html" rel="index" title="Option Index">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
-<link href="Extensions-implemented-in-GNU-Fortran.html#Extensions-implemented-in-GNU-Fortran" rel="up" title="Extensions implemented in GNU Fortran">
-<link href="CONVERT-specifier.html#CONVERT-specifier" rel="next" title="CONVERT specifier">
-<link href="Hollerith-constants-support.html#Hollerith-constants-support" rel="prev" title="Hollerith constants support">
+<link href="Extensions-implemented-in-GNU-Fortran.html" rel="up" title="Extensions implemented in GNU Fortran">
+<link href="CONVERT-specifier.html" rel="next" title="CONVERT specifier">
+<link href="Character-conversion.html" rel="prev" title="Character conversion">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
-blockquote.smallquotation {font-size: smaller}
+blockquote.indentedblock {margin-right: 0em}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
-div.indentedblock {margin-left: 3.2em}
 div.lisp {margin-left: 3.2em}
-div.smalldisplay {margin-left: 3.2em}
-div.smallexample {margin-left: 3.2em}
-div.smallindentedblock {margin-left: 3.2em; font-size: smaller}
-div.smalllisp {margin-left: 3.2em}
-kbd {font-style:oblique}
+kbd {font-style: oblique}
 pre.display {font-family: inherit}
 pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: inherit; font-size: smaller}
-pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: inherit; font-size: smaller}
-pre.smalllisp {font-size: smaller}
-span.nocodebreak {white-space:nowrap}
-span.nolinebreak {white-space:nowrap}
-span.roman {font-family:serif; font-weight:normal}
-span.sansserif {font-family:sans-serif; font-weight:normal}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
 ul.no-bullet {list-style: none}
 -->
 </style>
@@ -67,16 +57,14 @@ ul.no-bullet {list-style: none}
 
 </head>
 
-<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
-<a name="Cray-pointers"></a>
-<div class="header">
+<body lang="en">
+<span id="Cray-pointers"></span><div class="header">
 <p>
-Next: <a href="CONVERT-specifier.html#CONVERT-specifier" accesskey="n" rel="next">CONVERT specifier</a>, Previous: <a href="Hollerith-constants-support.html#Hollerith-constants-support" accesskey="p" rel="prev">Hollerith constants support</a>, Up: <a href="Extensions-implemented-in-GNU-Fortran.html#Extensions-implemented-in-GNU-Fortran" accesskey="u" rel="up">Extensions implemented in GNU Fortran</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Option-Index.html#Option-Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="CONVERT-specifier.html" accesskey="n" rel="next">CONVERT specifier</a>, Previous: <a href="Character-conversion.html" accesskey="p" rel="prev">Character conversion</a>, Up: <a href="Extensions-implemented-in-GNU-Fortran.html" accesskey="u" rel="up">Extensions implemented in GNU Fortran</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Option-Index.html" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<a name="Cray-pointers-1"></a>
-<h4 class="subsection">6.1.14 Cray pointers</h4>
-<a name="index-pointer_002c-Cray"></a>
+<span id="Cray-pointers-1"></span><h4 class="subsection">6.1.16 Cray pointers</h4>
+<span id="index-pointer_002c-Cray"></span>
 
 <p>Cray pointers are part of a non-standard extension that provides a
 C-like pointer in Fortran.  This is accomplished through a pair of
@@ -84,18 +72,20 @@ variables: an integer &quot;pointer&quot; that holds a memory address, and a
 &quot;pointee&quot; that is used to dereference the pointer.
 </p>
 <p>Pointer/pointee pairs are declared in statements of the form:
-</p><div class="smallexample">
-<pre class="smallexample">        pointer ( &lt;pointer&gt; , &lt;pointee&gt; )
+</p><div class="example">
+<pre class="example">        pointer ( &lt;pointer&gt; , &lt;pointee&gt; )
 </pre></div>
 <p>or,
-</p><div class="smallexample">
-<pre class="smallexample">        pointer ( &lt;pointer1&gt; , &lt;pointee1&gt; ), ( &lt;pointer2&gt; , &lt;pointee2&gt; ), ...
+</p><div class="example">
+<pre class="example">        pointer ( &lt;pointer1&gt; , &lt;pointee1&gt; ), ( &lt;pointer2&gt; , &lt;pointee2&gt; ), ...
 </pre></div>
 <p>The pointer is an integer that is intended to hold a memory address.
-The pointee may be an array or scalar.  A pointee can be an assumed
-size array&mdash;that is, the last dimension may be left unspecified by
-using a <code>*</code> in place of a value&mdash;but a pointee cannot be an
-assumed shape array.  No space is allocated for the pointee.
+The pointee may be an array or scalar.
+If an assumed-size array is permitted within the scoping unit, a
+pointee can be an assumed-size array.
+That is, the last dimension may be left unspecified by using a <code>*</code>
+in place of a value. A pointee cannot be an assumed shape array.
+No space is allocated for the pointee.
 </p>
 <p>The pointee may have its type declared before or after the pointer
 statement, and its array specification (if any) may be declared
@@ -103,8 +93,8 @@ before, during, or after the pointer statement.  The pointer may be
 declared as an integer prior to the pointer statement.  However, some
 machines have default integer sizes that are different than the size
 of a pointer, and so the following code is not portable:
-</p><div class="smallexample">
-<pre class="smallexample">        integer ipt
+</p><div class="example">
+<pre class="example">        integer ipt
         pointer (ipt, iarr)
 </pre></div>
 <p>If a pointer is declared with a kind that is too small, the compiler
@@ -119,12 +109,12 @@ pointer.
 as C pointer arithmetic.  Cray pointers are just ordinary integers, so
 the user is responsible for determining how many bytes to add to a
 pointer in order to increment it.  Consider the following example:
-</p><div class="smallexample">
-<pre class="smallexample">        real target(10)
+</p><div class="example">
+<pre class="example">        real target(10)
         real pointee(10)
         pointer (ipt, pointee)
         ipt = loc (target)
-        ipt = ipt + 1       
+        ipt = ipt + 1
 </pre></div>
 <p>The last statement does not set <code>ipt</code> to the address of
 <code>target(1)</code>, as it would in C pointer arithmetic.  Adding <code>1</code>
@@ -136,20 +126,20 @@ value stored in the pointer as the base address.
 <p>To get the address of elements, this extension provides an intrinsic
 function <code>LOC()</code>.  The <code>LOC()</code> function is equivalent to the
 <code>&amp;</code> operator in C, except the address is cast to an integer type:
-</p><div class="smallexample">
-<pre class="smallexample">        real ar(10)
+</p><div class="example">
+<pre class="example">        real ar(10)
         pointer(ipt, arpte(10))
         real arpte
         ipt = loc(ar)  ! Makes arpte is an alias for ar
         arpte(1) = 1.0 ! Sets ar(1) to 1.0
 </pre></div>
 <p>The pointer can also be set by a call to the <code>MALLOC</code> intrinsic
-(see <a href="MALLOC.html#MALLOC">MALLOC</a>).
+(see <a href="MALLOC.html">MALLOC</a>).
 </p>
 <p>Cray pointees often are used to alias an existing variable.  For
 example:
-</p><div class="smallexample">
-<pre class="smallexample">        integer target(10)
+</p><div class="example">
+<pre class="example">        integer target(10)
         integer iarr(10)
         pointer (ipt, iarr)
         ipt = loc(target)
@@ -183,8 +173,8 @@ in equivalence, common, or data statements.
 </p>
 <p>A Cray pointer may also point to a function or a subroutine.  For
 example, the following excerpt is valid:
-</p><div class="smallexample">
-<pre class="smallexample">  implicit none
+</p><div class="example">
+<pre class="example">  implicit none
   external sub
   pointer (subptr,subpte)
   external subpte
@@ -205,7 +195,7 @@ will not change the base address of the array that was passed.
 <hr>
 <div class="header">
 <p>
-Next: <a href="CONVERT-specifier.html#CONVERT-specifier" accesskey="n" rel="next">CONVERT specifier</a>, Previous: <a href="Hollerith-constants-support.html#Hollerith-constants-support" accesskey="p" rel="prev">Hollerith constants support</a>, Up: <a href="Extensions-implemented-in-GNU-Fortran.html#Extensions-implemented-in-GNU-Fortran" accesskey="u" rel="up">Extensions implemented in GNU Fortran</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Option-Index.html#Option-Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="CONVERT-specifier.html" accesskey="n" rel="next">CONVERT specifier</a>, Previous: <a href="Character-conversion.html" accesskey="p" rel="prev">Character conversion</a>, Up: <a href="Extensions-implemented-in-GNU-Fortran.html" accesskey="u" rel="up">Extensions implemented in GNU Fortran</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Option-Index.html" title="Index" rel="index">Index</a>]</p>
 </div>
 
 

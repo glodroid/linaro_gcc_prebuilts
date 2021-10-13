@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Copyright (C) 1999-2017 Free Software Foundation, Inc.
+<!-- Copyright (C) 1999-2021 Free Software Foundation, Inc.
 
 Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU Free Documentation License, Version 1.3 or
@@ -19,47 +19,37 @@ A GNU Manual
 You have freedom to copy and modify this GNU Manual, like GNU
      software.  Copies published by the Free Software Foundation raise
      funds for GNU development. -->
-<!-- Created by GNU Texinfo 5.2, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>The GNU Fortran Compiler: PACK</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>PACK (The GNU Fortran Compiler)</title>
 
-<meta name="description" content="The GNU Fortran Compiler: PACK">
-<meta name="keywords" content="The GNU Fortran Compiler: PACK">
+<meta name="description" content="PACK (The GNU Fortran Compiler)">
+<meta name="keywords" content="PACK (The GNU Fortran Compiler)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link href="index.html#Top" rel="start" title="Top">
-<link href="Option-Index.html#Option-Index" rel="index" title="Option Index">
+<link href="index.html" rel="start" title="Top">
+<link href="Option-Index.html" rel="index" title="Option Index">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
-<link href="Intrinsic-Procedures.html#Intrinsic-Procedures" rel="up" title="Intrinsic Procedures">
-<link href="PARITY.html#PARITY" rel="next" title="PARITY">
-<link href="OR.html#OR" rel="prev" title="OR">
+<link href="Intrinsic-Procedures.html" rel="up" title="Intrinsic Procedures">
+<link href="PARITY.html" rel="next" title="PARITY">
+<link href="OR.html" rel="prev" title="OR">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
-blockquote.smallquotation {font-size: smaller}
+blockquote.indentedblock {margin-right: 0em}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
-div.indentedblock {margin-left: 3.2em}
 div.lisp {margin-left: 3.2em}
-div.smalldisplay {margin-left: 3.2em}
-div.smallexample {margin-left: 3.2em}
-div.smallindentedblock {margin-left: 3.2em; font-size: smaller}
-div.smalllisp {margin-left: 3.2em}
-kbd {font-style:oblique}
+kbd {font-style: oblique}
 pre.display {font-family: inherit}
 pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: inherit; font-size: smaller}
-pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: inherit; font-size: smaller}
-pre.smalllisp {font-size: smaller}
-span.nocodebreak {white-space:nowrap}
-span.nolinebreak {white-space:nowrap}
-span.roman {font-family:serif; font-weight:normal}
-span.sansserif {font-family:sans-serif; font-weight:normal}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
 ul.no-bullet {list-style: none}
 -->
 </style>
@@ -67,19 +57,17 @@ ul.no-bullet {list-style: none}
 
 </head>
 
-<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
-<a name="PACK"></a>
-<div class="header">
+<body lang="en">
+<span id="PACK"></span><div class="header">
 <p>
-Next: <a href="PARITY.html#PARITY" accesskey="n" rel="next">PARITY</a>, Previous: <a href="OR.html#OR" accesskey="p" rel="prev">OR</a>, Up: <a href="Intrinsic-Procedures.html#Intrinsic-Procedures" accesskey="u" rel="up">Intrinsic Procedures</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Option-Index.html#Option-Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="PARITY.html" accesskey="n" rel="next">PARITY</a>, Previous: <a href="OR.html" accesskey="p" rel="prev">OR</a>, Up: <a href="Intrinsic-Procedures.html" accesskey="u" rel="up">Intrinsic Procedures</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Option-Index.html" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<a name="PACK-_002d_002d_002d-Pack-an-array-into-an-array-of-rank-one"></a>
-<h3 class="section">9.211 <code>PACK</code> &mdash; Pack an array into an array of rank one</h3>
-<a name="index-PACK"></a>
-<a name="index-array_002c-packing"></a>
-<a name="index-array_002c-reduce-dimension"></a>
-<a name="index-array_002c-gather-elements"></a>
+<span id="PACK-_002d_002d_002d-Pack-an-array-into-an-array-of-rank-one"></span><h3 class="section">9.213 <code>PACK</code> &mdash; Pack an array into an array of rank one</h3>
+<span id="index-PACK"></span>
+<span id="index-array_002c-packing"></span>
+<span id="index-array_002c-reduce-dimension"></span>
+<span id="index-array_002c-gather-elements"></span>
 
 <dl compact="compact">
 <dt><em>Description</em>:</dt>
@@ -91,7 +79,7 @@ equals <code>TRUE</code>. Afterwards, positions are filled with elements taken f
 </p>
 </dd>
 <dt><em>Standard</em>:</dt>
-<dd><p>Fortran 95 and later
+<dd><p>Fortran 90 and later
 </p>
 </dd>
 <dt><em>Class</em>:</dt>
@@ -125,8 +113,8 @@ number of <code>TRUE</code> values in <var>MASK</var> otherwise.
 </dd>
 <dt><em>Example</em>:</dt>
 <dd><p>Gathering nonzero elements from an array:
-</p><div class="smallexample">
-<pre class="smallexample">PROGRAM test_pack_1
+</p><div class="example">
+<pre class="example">PROGRAM test_pack_1
   INTEGER :: m(6)
   m = (/ 1, 0, 0, 0, 5, 0 /)
   WRITE(*, FMT=&quot;(6(I0, ' '))&quot;) pack(m, m /= 0)  ! &quot;1 5&quot;
@@ -134,17 +122,18 @@ END PROGRAM
 </pre></div>
 
 <p>Gathering nonzero elements from an array and appending elements from <var>VECTOR</var>:
-</p><div class="smallexample">
-<pre class="smallexample">PROGRAM test_pack_2
+</p><div class="example">
+<pre class="example">PROGRAM test_pack_2
   INTEGER :: m(4)
   m = (/ 1, 0, 0, 2 /)
-  WRITE(*, FMT=&quot;(4(I0, ' '))&quot;) pack(m, m /= 0, (/ 0, 0, 3, 4 /))  ! &quot;1 2 3 4&quot;
+  ! The following results in &quot;1 2 3 4&quot;
+  WRITE(*, FMT=&quot;(4(I0, ' '))&quot;) pack(m, m /= 0, (/ 0, 0, 3, 4 /))
 END PROGRAM
 </pre></div>
 
 </dd>
 <dt><em>See also</em>:</dt>
-<dd><p><a href="UNPACK.html#UNPACK">UNPACK</a>
+<dd><p><a href="UNPACK.html">UNPACK</a>
 </p></dd>
 </dl>
 
@@ -153,7 +142,7 @@ END PROGRAM
 <hr>
 <div class="header">
 <p>
-Next: <a href="PARITY.html#PARITY" accesskey="n" rel="next">PARITY</a>, Previous: <a href="OR.html#OR" accesskey="p" rel="prev">OR</a>, Up: <a href="Intrinsic-Procedures.html#Intrinsic-Procedures" accesskey="u" rel="up">Intrinsic Procedures</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Option-Index.html#Option-Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="PARITY.html" accesskey="n" rel="next">PARITY</a>, Previous: <a href="OR.html" accesskey="p" rel="prev">OR</a>, Up: <a href="Intrinsic-Procedures.html" accesskey="u" rel="up">Intrinsic Procedures</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Option-Index.html" title="Index" rel="index">Index</a>]</p>
 </div>
 
 

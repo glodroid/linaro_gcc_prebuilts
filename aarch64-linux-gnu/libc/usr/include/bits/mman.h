@@ -1,7 +1,5 @@
 /* Definitions for POSIX memory map interface.  Linux/AArch64 version.
-
-   Copyright (C) 1997-2017 Free Software Foundation, Inc.
-
+   Copyright (C) 2020-2021 Free Software Foundation, Inc.
    This file is part of the GNU C Library.
 
    The GNU C Library is free software; you can redistribute it and/or
@@ -15,30 +13,20 @@
    Lesser General Public License for more details.
 
    You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library.  If not, see
-   <http://www.gnu.org/licenses/>.  */
+   License along with the GNU C Library; if not, see
+   <https://www.gnu.org/licenses/>.  */
 
 #ifndef _SYS_MMAN_H
 # error "Never use <bits/mman.h> directly; include <sys/mman.h> instead."
 #endif
 
-/* The following definitions basically come from the kernel headers.
-   But the kernel header is not namespace clean.  */
+/* AArch64 specific definitions, should be in sync with
+   arch/arm64/include/uapi/asm/mman.h.  */
 
-/* These are Linux-specific.  */
-#ifdef __USE_MISC
-# define MAP_GROWSDOWN	0x00100		/* Stack-like segment.  */
-# define MAP_DENYWRITE	0x00800		/* ETXTBSY */
-# define MAP_EXECUTABLE	0x01000		/* Mark it as an executable.  */
-# define MAP_LOCKED	0x02000		/* Lock the mapping.  */
-# define MAP_NORESERVE	0x04000		/* Don't check for reservations.  */
-# define MAP_POPULATE	0x08000		/* Populate (prefault) pagetables.  */
-# define MAP_NONBLOCK	0x10000		/* Do not block on IO.  */
-# define MAP_STACK	0x20000		/* Allocation is for a stack.  */
-# define MAP_HUGETLB	0x40000		/* Create huge page mapping.  */
-#endif
+#define PROT_BTI	0x10
+#define PROT_MTE	0x20
 
-
+#include <bits/mman-map-flags-generic.h>
 
 /* Include generic Linux declarations.  */
 #include <bits/mman-linux.h>

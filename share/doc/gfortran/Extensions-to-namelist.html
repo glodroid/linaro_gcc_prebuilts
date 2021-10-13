@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Copyright (C) 1999-2017 Free Software Foundation, Inc.
+<!-- Copyright (C) 1999-2021 Free Software Foundation, Inc.
 
 Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU Free Documentation License, Version 1.3 or
@@ -19,47 +19,37 @@ A GNU Manual
 You have freedom to copy and modify this GNU Manual, like GNU
      software.  Copies published by the Free Software Foundation raise
      funds for GNU development. -->
-<!-- Created by GNU Texinfo 5.2, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>The GNU Fortran Compiler: Extensions to namelist</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Extensions to namelist (The GNU Fortran Compiler)</title>
 
-<meta name="description" content="The GNU Fortran Compiler: Extensions to namelist">
-<meta name="keywords" content="The GNU Fortran Compiler: Extensions to namelist">
+<meta name="description" content="Extensions to namelist (The GNU Fortran Compiler)">
+<meta name="keywords" content="Extensions to namelist (The GNU Fortran Compiler)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link href="index.html#Top" rel="start" title="Top">
-<link href="Option-Index.html#Option-Index" rel="index" title="Option Index">
+<link href="index.html" rel="start" title="Top">
+<link href="Option-Index.html" rel="index" title="Option Index">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
-<link href="Extensions-implemented-in-GNU-Fortran.html#Extensions-implemented-in-GNU-Fortran" rel="up" title="Extensions implemented in GNU Fortran">
-<link href="X-format-descriptor-without-count-field.html#X-format-descriptor-without-count-field" rel="next" title="X format descriptor without count field">
-<link href="Old_002dstyle-variable-initialization.html#Old_002dstyle-variable-initialization" rel="prev" title="Old-style variable initialization">
+<link href="Extensions-implemented-in-GNU-Fortran.html" rel="up" title="Extensions implemented in GNU Fortran">
+<link href="X-format-descriptor-without-count-field.html" rel="next" title="X format descriptor without count field">
+<link href="Old_002dstyle-variable-initialization.html" rel="prev" title="Old-style variable initialization">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
-blockquote.smallquotation {font-size: smaller}
+blockquote.indentedblock {margin-right: 0em}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
-div.indentedblock {margin-left: 3.2em}
 div.lisp {margin-left: 3.2em}
-div.smalldisplay {margin-left: 3.2em}
-div.smallexample {margin-left: 3.2em}
-div.smallindentedblock {margin-left: 3.2em; font-size: smaller}
-div.smalllisp {margin-left: 3.2em}
-kbd {font-style:oblique}
+kbd {font-style: oblique}
 pre.display {font-family: inherit}
 pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: inherit; font-size: smaller}
-pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: inherit; font-size: smaller}
-pre.smalllisp {font-size: smaller}
-span.nocodebreak {white-space:nowrap}
-span.nolinebreak {white-space:nowrap}
-span.roman {font-family:serif; font-weight:normal}
-span.sansserif {font-family:sans-serif; font-weight:normal}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
 ul.no-bullet {list-style: none}
 -->
 </style>
@@ -67,16 +57,14 @@ ul.no-bullet {list-style: none}
 
 </head>
 
-<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
-<a name="Extensions-to-namelist"></a>
-<div class="header">
+<body lang="en">
+<span id="Extensions-to-namelist"></span><div class="header">
 <p>
-Next: <a href="X-format-descriptor-without-count-field.html#X-format-descriptor-without-count-field" accesskey="n" rel="next">X format descriptor without count field</a>, Previous: <a href="Old_002dstyle-variable-initialization.html#Old_002dstyle-variable-initialization" accesskey="p" rel="prev">Old-style variable initialization</a>, Up: <a href="Extensions-implemented-in-GNU-Fortran.html#Extensions-implemented-in-GNU-Fortran" accesskey="u" rel="up">Extensions implemented in GNU Fortran</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Option-Index.html#Option-Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="X-format-descriptor-without-count-field.html" accesskey="n" rel="next">X format descriptor without count field</a>, Previous: <a href="Old_002dstyle-variable-initialization.html" accesskey="p" rel="prev">Old-style variable initialization</a>, Up: <a href="Extensions-implemented-in-GNU-Fortran.html" accesskey="u" rel="up">Extensions implemented in GNU Fortran</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Option-Index.html" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<a name="Extensions-to-namelist-1"></a>
-<h4 class="subsection">6.1.3 Extensions to namelist</h4>
-<a name="index-Namelist"></a>
+<span id="Extensions-to-namelist-1"></span><h4 class="subsection">6.1.3 Extensions to namelist</h4>
+<span id="index-Namelist"></span>
 
 <p>GNU Fortran fully supports the Fortran 95 standard for namelist I/O
 including array qualifiers, substrings and fully qualified derived types.
@@ -85,8 +73,8 @@ output has all names in upper case and indentation to column 1 after the
 namelist name.  Two extensions are permitted:
 </p>
 <p>Old-style use of &lsquo;<samp>$</samp>&rsquo; instead of &lsquo;<samp>&amp;</samp>&rsquo;
-</p><div class="smallexample">
-<pre class="smallexample">$MYNML
+</p><div class="example">
+<pre class="example">$MYNML
  X(:)%Y(2) = 1.0 2.0 3.0
  CH(1:4) = &quot;abcd&quot;
 $END
@@ -98,8 +86,8 @@ $END
 <p>Querying of the namelist when inputting from stdin.  After at least
 one space, entering &lsquo;<samp>?</samp>&rsquo; sends to stdout the namelist name and the names of
 the variables in the namelist:
-</p><div class="smallexample">
-<pre class="smallexample"> ?
+</p><div class="example">
+<pre class="example"> ?
 
 &amp;mynml
  x
@@ -110,8 +98,8 @@ the variables in the namelist:
 
 <p>Entering &lsquo;<samp>=?</samp>&rsquo; outputs the namelist to stdout, as if
 <code>WRITE(*,NML = mynml)</code> had been called:
-</p><div class="smallexample">
-<pre class="smallexample">=?
+</p><div class="example">
+<pre class="example">=?
 
 &amp;MYNML
  X(1)%Y=  0.000000    ,  1.000000    ,  0.000000    ,
@@ -125,20 +113,20 @@ messages to stderr and execution continues, even if <code>IOSTAT</code> is set.
 </p>
 <p><code>PRINT</code> namelist is permitted.  This causes an error if
 <samp>-std=f95</samp> is used.
-</p><div class="smallexample">
-<pre class="smallexample">PROGRAM test_print
+</p><div class="example">
+<pre class="example">PROGRAM test_print
   REAL, dimension (4)  ::  x = (/1.0, 2.0, 3.0, 4.0/)
   NAMELIST /mynml/ x
   PRINT mynml
 END PROGRAM test_print
 </pre></div>
 
-<p>Expanded namelist reads are permitted.  This causes an error if 
+<p>Expanded namelist reads are permitted.  This causes an error if
 <samp>-std=f95</samp> is used.  In the following example, the first element
 of the array will be given the value 0.00 and the two succeeding
 elements will be given the values 1.00 and 2.00.
-</p><div class="smallexample">
-<pre class="smallexample">&amp;MYNML
+</p><div class="example">
+<pre class="example">&amp;MYNML
   X(1,1) = 0.00 , 1.00 , 2.00
 /
 </pre></div>
@@ -152,7 +140,7 @@ read back in accurately.
 <hr>
 <div class="header">
 <p>
-Next: <a href="X-format-descriptor-without-count-field.html#X-format-descriptor-without-count-field" accesskey="n" rel="next">X format descriptor without count field</a>, Previous: <a href="Old_002dstyle-variable-initialization.html#Old_002dstyle-variable-initialization" accesskey="p" rel="prev">Old-style variable initialization</a>, Up: <a href="Extensions-implemented-in-GNU-Fortran.html#Extensions-implemented-in-GNU-Fortran" accesskey="u" rel="up">Extensions implemented in GNU Fortran</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Option-Index.html#Option-Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="X-format-descriptor-without-count-field.html" accesskey="n" rel="next">X format descriptor without count field</a>, Previous: <a href="Old_002dstyle-variable-initialization.html" accesskey="p" rel="prev">Old-style variable initialization</a>, Up: <a href="Extensions-implemented-in-GNU-Fortran.html" accesskey="u" rel="up">Extensions implemented in GNU Fortran</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Option-Index.html" title="Index" rel="index">Index</a>]</p>
 </div>
 
 

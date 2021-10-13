@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Copyright (C) 1999-2017 Free Software Foundation, Inc.
+<!-- Copyright (C) 1999-2021 Free Software Foundation, Inc.
 
 Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU Free Documentation License, Version 1.3 or
@@ -19,47 +19,37 @@ A GNU Manual
 You have freedom to copy and modify this GNU Manual, like GNU
      software.  Copies published by the Free Software Foundation raise
      funds for GNU development. -->
-<!-- Created by GNU Texinfo 5.2, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>The GNU Fortran Compiler: CTIME</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>CTIME (The GNU Fortran Compiler)</title>
 
-<meta name="description" content="The GNU Fortran Compiler: CTIME">
-<meta name="keywords" content="The GNU Fortran Compiler: CTIME">
+<meta name="description" content="CTIME (The GNU Fortran Compiler)">
+<meta name="keywords" content="CTIME (The GNU Fortran Compiler)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link href="index.html#Top" rel="start" title="Top">
-<link href="Option-Index.html#Option-Index" rel="index" title="Option Index">
+<link href="index.html" rel="start" title="Top">
+<link href="Option-Index.html" rel="index" title="Option Index">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
-<link href="Intrinsic-Procedures.html#Intrinsic-Procedures" rel="up" title="Intrinsic Procedures">
-<link href="DATE_005fAND_005fTIME.html#DATE_005fAND_005fTIME" rel="next" title="DATE_AND_TIME">
-<link href="CSHIFT.html#CSHIFT" rel="prev" title="CSHIFT">
+<link href="Intrinsic-Procedures.html" rel="up" title="Intrinsic Procedures">
+<link href="DATE_005fAND_005fTIME.html" rel="next" title="DATE_AND_TIME">
+<link href="CSHIFT.html" rel="prev" title="CSHIFT">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
-blockquote.smallquotation {font-size: smaller}
+blockquote.indentedblock {margin-right: 0em}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
-div.indentedblock {margin-left: 3.2em}
 div.lisp {margin-left: 3.2em}
-div.smalldisplay {margin-left: 3.2em}
-div.smallexample {margin-left: 3.2em}
-div.smallindentedblock {margin-left: 3.2em; font-size: smaller}
-div.smalllisp {margin-left: 3.2em}
-kbd {font-style:oblique}
+kbd {font-style: oblique}
 pre.display {font-family: inherit}
 pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: inherit; font-size: smaller}
-pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: inherit; font-size: smaller}
-pre.smalllisp {font-size: smaller}
-span.nocodebreak {white-space:nowrap}
-span.nolinebreak {white-space:nowrap}
-span.roman {font-family:serif; font-weight:normal}
-span.sansserif {font-family:sans-serif; font-weight:normal}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
 ul.no-bullet {list-style: none}
 -->
 </style>
@@ -67,23 +57,21 @@ ul.no-bullet {list-style: none}
 
 </head>
 
-<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
-<a name="CTIME"></a>
-<div class="header">
+<body lang="en">
+<span id="CTIME"></span><div class="header">
 <p>
-Next: <a href="DATE_005fAND_005fTIME.html#DATE_005fAND_005fTIME" accesskey="n" rel="next">DATE_AND_TIME</a>, Previous: <a href="CSHIFT.html#CSHIFT" accesskey="p" rel="prev">CSHIFT</a>, Up: <a href="Intrinsic-Procedures.html#Intrinsic-Procedures" accesskey="u" rel="up">Intrinsic Procedures</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Option-Index.html#Option-Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="DATE_005fAND_005fTIME.html" accesskey="n" rel="next">DATE_AND_TIME</a>, Previous: <a href="CSHIFT.html" accesskey="p" rel="prev">CSHIFT</a>, Up: <a href="Intrinsic-Procedures.html" accesskey="u" rel="up">Intrinsic Procedures</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Option-Index.html" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<a name="CTIME-_002d_002d_002d-Convert-a-time-into-a-string"></a>
-<h3 class="section">9.81 <code>CTIME</code> &mdash; Convert a time into a string</h3>
-<a name="index-CTIME"></a>
-<a name="index-time_002c-conversion-to-string"></a>
-<a name="index-conversion_002c-to-string"></a>
+<span id="CTIME-_002d_002d_002d-Convert-a-time-into-a-string"></span><h3 class="section">9.81 <code>CTIME</code> &mdash; Convert a time into a string</h3>
+<span id="index-CTIME"></span>
+<span id="index-time_002c-conversion-to-string"></span>
+<span id="index-conversion_002c-to-string"></span>
 
 <dl compact="compact">
 <dt><em>Description</em>:</dt>
 <dd><p><code>CTIME</code> converts a system time value, such as returned by
-<a href="TIME8.html#TIME8">TIME8</a>, to a string. The output will be of the form &lsquo;<samp>Sat
+<a href="TIME8.html">TIME8</a>, to a string. The output will be of the form &lsquo;<samp>Sat
 Aug 19 18:13:14 1995</samp>&rsquo;.
 </p>
 <p>This intrinsic is provided in both subroutine and function forms; however,
@@ -120,8 +108,8 @@ completely, it will be blank on procedure return.</td></tr>
 </p>
 </dd>
 <dt><em>Example</em>:</dt>
-<dd><div class="smallexample">
-<pre class="smallexample">program test_ctime
+<dd><div class="example">
+<pre class="example">program test_ctime
     integer(8) :: i
     character(len=30) :: date
     i = time8()
@@ -135,7 +123,11 @@ end program test_ctime
 
 </dd>
 <dt><em>See Also</em>:</dt>
-<dd><p><a href="DATE_005fAND_005fTIME.html#DATE_005fAND_005fTIME">DATE_AND_TIME</a>, <a href="GMTIME.html#GMTIME">GMTIME</a>, <a href="LTIME.html#LTIME">LTIME</a>, <a href="TIME.html#TIME">TIME</a>, <a href="TIME8.html#TIME8">TIME8</a>
+<dd><p><a href="DATE_005fAND_005fTIME.html">DATE_AND_TIME</a>, 
+<a href="GMTIME.html">GMTIME</a>, 
+<a href="LTIME.html">LTIME</a>, 
+<a href="TIME.html">TIME</a>, 
+<a href="TIME8.html">TIME8</a>
 </p></dd>
 </dl>
 

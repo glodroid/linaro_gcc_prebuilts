@@ -1,5 +1,5 @@
 /* Definitions for POSIX 1003.1b-1993 (aka POSIX.4) scheduling interface.
-   Copyright (C) 1996-2017 Free Software Foundation, Inc.
+   Copyright (C) 1996-2021 Free Software Foundation, Inc.
    This file is part of the GNU C Library.
 
    The GNU C Library is free software; you can redistribute it and/or
@@ -14,7 +14,7 @@
 
    You should have received a copy of the GNU Lesser General Public
    License along with the GNU C Library; if not, see
-   <http://www.gnu.org/licenses/>.  */
+   <https://www.gnu.org/licenses/>.  */
 
 #ifndef	_SCHED_H
 #define	_SCHED_H	1
@@ -39,11 +39,13 @@ typedef __pid_t pid_t;
 # define __pid_t_defined
 #endif
 
-
 /* Get system specific constant and data structure definitions.  */
 #include <bits/sched.h>
-/* Define the real names for the elements of `struct sched_param'.  */
-#define sched_priority	__sched_priority
+#include <bits/cpu-set.h>
+
+/* Backward compatibility.  */
+#define sched_priority    sched_priority
+#define __sched_priority  sched_priority
 
 
 __BEGIN_DECLS
@@ -72,8 +74,17 @@ extern int sched_get_priority_max (int __algorithm) __THROW;
 extern int sched_get_priority_min (int __algorithm) __THROW;
 
 /* Get the SCHED_RR interval for the named process.  */
+#ifndef __USE_TIME_BITS64
 extern int sched_rr_get_interval (__pid_t __pid, struct timespec *__t) __THROW;
-
+#else
+# ifdef __REDIRECT_NTH
+extern int __REDIRECT_NTH (sched_rr_get_interval,
+                           (__pid_t __pid, struct timespec *__t),
+                           __sched_rr_get_interval64);
+# else
+#  define sched_rr_get_interval __sched_rr_get_interval64
+# endif
+#endif
 
 #ifdef __USE_GNU
 /* Access macros for `cpu_set'.  */
